@@ -1,0 +1,35 @@
+/* Empty. Add your own CSS if you like */
+
+.landing-page-card {
+  text-align: center;
+}
+
+.logo-landing-page {
+  display: block;
+  width: 128px;
+  margin: 0 auto;
+  margin-bottom: 2em;
+}
+
+.item-text-wrap {
+  text-align: center;
+}
+
+.category, .category-blank {
+  height: 100px;
+  margin: 5px;
+}
+
+.category {
+  background-color: #0296c0;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.category-icon {
+  font-size: 60px;
+}
+
+.material-icon {
+  max-height: 100%;
+}
