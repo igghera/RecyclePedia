@@ -1,10 +1,10 @@
-// Ionic Starter App
+// Ionic RecyclePedia App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
+// 'RecyclePedia' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers'])
+// 'RecyclePedia.controllers' is found in controllers.js
+angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recyclepedia.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -40,14 +40,36 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     })
 
-    .state('app.browse', {
-      url: "/browse",
+    .state('app.categories', {
+      url: "/categories",
       views: {
         'menuContent' :{
-          templateUrl: "templates/browse.html"
+          templateUrl: "templates/categories.html",
+          controller: 'CategoriesCtrl'
         }
       }
     })
+
+    .state('app.category', {
+      url: "/category/:categoryId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/search.html",
+          controller: 'SearchCtrl'
+        }
+      }
+    })
+
+    .state('app.material', {
+      url: "/material/:materialName",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/material.html",
+          controller: 'MaterialCtrl'
+        }
+      }
+    })
+
     .state('app.playlists', {
       url: "/playlists",
       views: {

@@ -15,15 +15,22 @@
   text-align: center;
 }
 
+.row.categories {
+  padding: 0;
+  height: 20%;
+}
+
 .category, .category-blank {
   height: 100px;
-  margin: 5px;
+  /*margin: 5px;*/
 }
 
 .category {
   background-color: #0296c0;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   text-align: center;
+  color: black;
+  text-decoration: none;
 }
 
 .category-icon {
