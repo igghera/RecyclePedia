@@ -1,37 +1,55 @@
 angular.module('recyclepedia.controllers', [])
 
-.controller('AppCtrl', function($scope) {
+// Wrapper/menu
+
+.controller('AppCtrl', function($scope) {})
+
+// Councils
+
+.controller('CouncilsCtrl', function($scope, ApiService, $location) {
+  $scope.councils = [];
+
+  $scope.saveCouncil = function(council) {
+    window.localStorage['council'] = angular.toJson(council);
+    $location.path('/app/categories');
+  };
+
+  ApiService.getCouncils().then(function (response) {
+    angular.forEach(response.data.response, function(council) {
+      council.logoUrl = 'http://tramselcycer2013.herokuapp.com' + council.logo.logo.url;
+      $scope.councils.push(council);
+    });
+  });
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.councils = [
-    { title: 'Ashfield Council', id: 1 },
-    { title: 'Brisbane City Council', id: 2 },
-    { title: 'Lane Cove Council', id: 3 }
-  ];
-})
+// Materials
 
-.controller('SearchCtrl', function($scope, $location) {
-  $scope.materials = [
-    {name: 'Bamboo' },
-    {name: 'Branches' },
-    {name: 'Flower Cuttings' },
-    {name: 'Leaves' },
-    {name: 'Large Stump' },
-    {name: 'Weeds' },
-    {name: 'Bamboo' }
-  ];
+.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService) {
+  $scope.categoryName = $stateParams.categoryName;
+  $scope.categoryId = $stateParams.categoryId;
 
-  $scope.goTo = function(materialName) {
-    $location.path('app/material/' + materialName);
+  $scope.items = [];
+
+  ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
+    $scope.items = response.data.response;
+  });
+
+  $scope.goToItemDetail = function(item) {
+    ApiService.selectedItem = item;
+    $location.path('app/item/' + item.item.name);
   };
 })
 
-.controller('CategoriesCtrl', function($scope, CategoryService) {
+// Categories
+
+.controller('CategoriesCtrl', function($scope, ApiService, $location) {
   $scope.categories = [];
 
-  CategoryService.getList().then(function (response) {
-    debugger;
+  $scope.gotoItemsList = function(category) {
+    $location.path('app/category/' + category.title + '/' + category.id);
+  };
+
+  ApiService.getCategories().then(function (response) {
     angular.forEach(response.data.response, function(c) {
       c.color = randomColor();
       $scope.categories.push(c);
@@ -43,14 +61,9 @@ angular.module('recyclepedia.controllers', [])
   };
 })
 
-.controller('MaterialCtrl', function($scope, $stateParams) {
-  $scope.material = {
-    name: $stateParams.materialName
-  };
+// Item detail
 
-  $scope.categories = [
-    { name: 'Garden', id: 1 },
-    { name: 'Tullo', id: 2 },
-    { name: 'Sai', id: 3 }
-  ];
+.controller('ItemCtrl', function($scope, $stateParams, ApiService) {
+  $scope.item = ApiService.selectedItem;
+  $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
 })

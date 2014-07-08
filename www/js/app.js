@@ -51,45 +51,36 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     })
 
     .state('app.category', {
-      url: "/category/:categoryId",
+      url: "/category/:categoryName/:categoryId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/search.html",
-          controller: 'SearchCtrl'
+          templateUrl: "templates/category.html",
+          controller: 'CategoryCtrl'
         }
       }
     })
 
-    .state('app.material', {
-      url: "/material/:materialName",
+    .state('app.item', {
+      url: "/item/:materialName",
       views: {
         'menuContent' :{
-          templateUrl: "templates/material.html",
-          controller: 'MaterialCtrl'
+          templateUrl: "templates/item.html",
+          controller: 'ItemCtrl'
         }
       }
     })
 
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.councils', {
+      url: "/councils",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-    .state('app.single', {
-      url: "/playlists/:playlistId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
+          templateUrl: "templates/councils.html",
+          controller: 'CouncilsCtrl'
         }
       }
     });
+
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/councils');
 });
 

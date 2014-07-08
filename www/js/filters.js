@@ -25,4 +25,13 @@ angular.module('recyclepedia.controllers')
     return newArr;
   };
   return filter;
+})
+
+.filter('capitalize', function() {
+  return function(stringToFormat) {
+    var firstLetter = stringToFormat.substring(0, 1);
+    var restofString = stringToFormat.substring(1);
+
+    return firstLetter.toUpperCase() + restofString.toLowerCase();
+  };
 });

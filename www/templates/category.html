@@ -1,4 +1,4 @@
-<ion-view title="Search">
+<ion-view title="{{categoryName | capitalize}}">
   <div class="bar bar-header">
   <h1 class="title">Header</h1>
 </div>
@@ -15,8 +15,8 @@
   </ion-nav-buttons> -->
   <ion-content class="has-subheader">
     <ul class="list">
-      <li class="item item-button-right" ng-repeat="material in materials | filter:search" ng-click="goTo(material.name)">
-        {{material.name}}
+      <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
+        {{item.item.name}}
         <button class="button button-positive">
           <i class="icon ion-star"></i>
         </button>

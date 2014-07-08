@@ -5,7 +5,11 @@
   <ion-content class="has-header">
 
     <div class="row categories" ng-repeat="rows in categories | partition:2">
-      <a class="col category" href="#/app/category/garden" ng-repeat="category in rows" ng-style='{"background-color": category.color}'>
+      <a class="col category"
+         href=""
+         ng-repeat="category in rows"
+         ng-style='{"background-color": category.color}'
+         ng-click="gotoItemsList(category)">
         <div>
           <i class="icon ion-leaf category-icon"></i>
         </div>

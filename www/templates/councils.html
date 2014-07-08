@@ -10,10 +10,9 @@
       </div>
     </div>
     <ion-list>
-      <a class="item item-avatar" ng-repeat="council in councils" href="#/app/playlists/{{council.id}}">
-        <img src="img/ionic.png">
-        <h2>{{council.title}}</h2>
-        <p>Nine Inch Nails</p>
+      <a class="item item-avatar" ng-repeat="council in councils" href="" ng-click="saveCouncil(council)">
+        <img src="img/ionic.png" ng-src="{{council.logoUrl}}">
+        <h2>{{council.name}}</h2>
       </a>
     </ion-list>
   </ion-content>
