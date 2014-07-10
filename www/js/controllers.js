@@ -2,15 +2,26 @@ angular.module('recyclepedia.controllers', [])
 
 // Wrapper/menu
 
-.controller('AppCtrl', function($scope) {})
+.controller('AppCtrl', function($scope) {
+  var selectedCouncil = angular.fromJson(window.localStorage['council']);
+
+  $scope.selectedCouncil = angular.isUndefined(selectedCouncil) ? '' : selectedCouncil.name;
+  // Listen for event: council-changed
+  $scope.$on('council-changed', function(event, newCouncil) {
+    $scope.selectedCouncil = newCouncil;
+  });
+})
 
 // Councils
 
-.controller('CouncilsCtrl', function($scope, ApiService, $location) {
+.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location) {
   $scope.councils = [];
 
   $scope.saveCouncil = function(council) {
     window.localStorage['council'] = angular.toJson(council);
+
+    // Broadcast event to notify the menu that council has changed
+    $rootScope.$broadcast('council-changed', council.name);
     $location.path('/app/categories');
   };
 
