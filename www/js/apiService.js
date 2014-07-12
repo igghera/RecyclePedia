@@ -5,7 +5,28 @@ angular.module('recyclepedia.services', [])
     factory.selectedItem = null;
 
     factory.getCategories = function() {
-      return $http.get('http://tramselcycer2013.herokuapp.com/api/2/categories');
+      // return $http.get('http://tramselcycer2013.herokuapp.com/api/2/categories');
+
+      var mockData = {
+        data: {
+          response: [
+            {id: 1, title: 'Automotive'},
+            {id: 2, title: 'Batteries'},
+            {id: 3, title: 'Chemicals'},
+            {id: 4, title: 'Constructions'},
+            {id: 5, title: 'Household'},
+            {id: 6, title: 'Electronics'},
+            {id: 7, title: 'Food'},
+            {id: 8, title: 'Garden'},
+            {id: 9, title: 'Glass'},
+            {id: 10, title: 'Metals'},
+            {id: 11, title: 'Paper and Cardboard'},
+            {id: 12, title: 'Plastics'}
+          ]
+        }
+      };
+
+      return $q.when(mockData);
     };
 
     factory.getCouncils = function() {

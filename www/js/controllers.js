@@ -14,7 +14,11 @@ angular.module('recyclepedia.controllers', [])
 
 // Councils
 
-.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location) {
+.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location, $ionicLoading) {
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
   $scope.councils = [];
 
   $scope.saveCouncil = function(council) {
@@ -29,6 +33,7 @@ angular.module('recyclepedia.controllers', [])
     angular.forEach(response.data.response, function(council) {
       council.logoUrl = 'http://tramselcycer2013.herokuapp.com' + council.logo.logo.url;
       $scope.councils.push(council);
+      $ionicLoading.hide();
     });
   });
 })
@@ -55,21 +60,57 @@ angular.module('recyclepedia.controllers', [])
 
 .controller('CategoriesCtrl', function($scope, ApiService, $location) {
   $scope.categories = [];
+  $scope.search = {
+    item: {
+      name: ''
+    }
+  };
+
+  $scope.clearSearchField = function() {
+    $scope.search.item.name = '';
+  };
+
+  $scope.showList = function () {
+    if($scope.search.item.name !== '') {
+      $scope.tilesVisible = false;
+      $scope.listVisible = true;
+    } else {
+      $scope.tilesVisible = true;
+      $scope.listVisible = false;
+    }
+  };
 
   $scope.gotoItemsList = function(category) {
     $location.path('app/category/' + category.title + '/' + category.id);
   };
 
+  var bgColors = [
+    '#dc5629',
+    '#e17a25',
+    '#f0b31d',
+    '#f9e607',
+    '#87ba3b',
+    '#14a88b',
+    '#278fc6',
+    '#0071bc',
+    '#6d4e88',
+    '#9a437e',
+    '#cc427d',
+    '#fd625e',
+    '#dc5629',
+    '#e17a25',
+    '#f0b31d'
+  ];
+
   ApiService.getCategories().then(function (response) {
+    var i = 0;
+
     angular.forEach(response.data.response, function(c) {
-      c.color = randomColor();
+      c.color = bgColors[i];
       $scope.categories.push(c);
+      i++;
     });
   });
-
-  var randomColor = function() {
-    return "#" + Math.floor(Math.random() * 16777215).toString(16);
-  };
 })
 
 // Item detail

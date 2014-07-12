@@ -16,8 +16,11 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      // StatusBar.styleDefault();
     }
+
+    // console.log(window.ionic.Platform);
+    // ionic.Platform.fullScreen(false, true);
   });
 
   if(!angular.isUndefined(window.localStorage['council'])) {

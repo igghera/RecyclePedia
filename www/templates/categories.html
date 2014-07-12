@@ -1,20 +1,62 @@
 <ion-view title="Categories" left-buttons="leftButtons"  hide-back-button="true">
 
   <!-- top buttons -->
+
   <ion-nav-buttons side="right">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
 
+  <div class="bar bar-subheader item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <input type="search" placeholder="What do you want to recycle?" ng-model="search.item.name">
+    </label>
+    <button class="button button-small button-energized" ng-if="search.item.name != ''" ng-click="clearSearchField()">
+      Cancel
+    </button>
+  </div>
+
   <!-- content -->
-  <ion-content class="has-header">
-    <div class="row categories" ng-repeat="rows in categories | partition:2">
+
+  <ion-content class="has-subheader item-animate" ng-show="search.item.name != ''">
+    <ul class="list">
+      <li class="item item-button-right">
+        Alluminum cans
+        <button class="button button-positive">
+          <i class="icon ion-star"></i>
+        </button>
+      </li>
+      <li class="item item-button-right">
+        Steel cans
+        <button class="button button-positive">
+          <i class="icon ion-star"></i>
+        </button>
+      </li>
+      <li class="item item-button-right">
+        Anus anis
+        <button class="button button-positive">
+          <i class="icon ion-star"></i>
+        </button>
+      </li>
+      <li class="item item-button-right">
+        Lorem ipsum dolor
+        <button class="button button-positive">
+          <i class="icon ion-star"></i>
+        </button>
+      </li>
+    </ul>
+  </ion-content>
+
+  <ion-content class="has-subheader" ng-show="search.item.name == ''">
+    <div class="row categories" ng-repeat="rows in categories | partition:3">
       <a class="col category"
          href=""
          ng-repeat="category in rows"
          ng-style='{"background-color": category.color}'
          ng-click="gotoItemsList(category)">
         <div>
-          <i class="icon ion-leaf category-icon"></i>
+          <img src="img/electronics.png" alt="" height="70">
+          <!-- <i class="icon ion-leaf category-icon"></i> -->
         </div>
         {{category.title}}
       </a>
