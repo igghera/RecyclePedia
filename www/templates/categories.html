@@ -9,7 +9,7 @@
   <div class="bar bar-subheader item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios7-search placeholder-icon"></i>
-      <input type="search" placeholder="What do you want to recycle?" ng-model="search.item.name">
+      <input class="js-searchField" type="search" placeholder="What do you want to recycle?" ng-model="search.item.name">
     </label>
     <button class="button button-small button-energized" ng-if="search.item.name != ''" ng-click="clearSearchField()">
       Cancel
@@ -20,26 +20,8 @@
 
   <ion-content class="has-subheader item-animate" ng-show="search.item.name != ''">
     <ul class="list">
-      <li class="item item-button-right">
-        Alluminum cans
-        <button class="button button-positive">
-          <i class="icon ion-star"></i>
-        </button>
-      </li>
-      <li class="item item-button-right">
-        Steel cans
-        <button class="button button-positive">
-          <i class="icon ion-star"></i>
-        </button>
-      </li>
-      <li class="item item-button-right">
-        Anus anis
-        <button class="button button-positive">
-          <i class="icon ion-star"></i>
-        </button>
-      </li>
-      <li class="item item-button-right">
-        Lorem ipsum dolor
+      <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
+        {{item.item.name}}
         <button class="button button-positive">
           <i class="icon ion-star"></i>
         </button>
@@ -55,7 +37,7 @@
          ng-style='{"background-color": category.color}'
          ng-click="gotoItemsList(category)">
         <div>
-          <img src="img/electronics.png" alt="" height="70">
+          <img ng-src="img/{{category.title}}.png" alt="" height="70">
           <!-- <i class="icon ion-leaf category-icon"></i> -->
         </div>
         {{category.title}}

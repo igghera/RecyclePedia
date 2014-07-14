@@ -38,5 +38,9 @@ angular.module('recyclepedia.services', [])
       return $http.get('http://tramselcycer2013.herokuapp.com/api/2/councils/'+ councilId +'/category/'+ categoryId +'/council_category_items');
     };
 
+    factory.search = function(query) {
+      return $http.get('http://192.168.2.18:3000/api/2/councils/153/council_items/search?q=' + query);
+    };
+
     return factory;
   });

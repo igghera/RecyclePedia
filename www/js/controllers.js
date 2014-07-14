@@ -66,22 +66,40 @@ angular.module('recyclepedia.controllers', [])
     }
   };
 
+  // temporary
+
+  $scope.items = [];
+
+  ApiService.getItemsForCategory(1).then(function (response) {
+    $scope.items = response.data.response;
+  });
+
+  $scope.goToItemDetail = function(item) {
+    ApiService.selectedItem = item;
+    $location.path('app/item/' + item.item.name);
+  };
+
+  // end temporary
+
   $scope.clearSearchField = function() {
     $scope.search.item.name = '';
   };
 
-  $scope.showList = function () {
-    if($scope.search.item.name !== '') {
-      $scope.tilesVisible = false;
-      $scope.listVisible = true;
-    } else {
-      $scope.tilesVisible = true;
-      $scope.listVisible = false;
-    }
-  };
-
   $scope.gotoItemsList = function(category) {
-    $location.path('app/category/' + category.title + '/' + category.id);
+    /**
+    * document.activeElement returns the item on the page that has focus.
+    * Here we check if the activeElement is the search field in the view, to avoid this unwanted behaviour:
+    * On a device, whenever you focus on an inut field, the keyboard comes up and covers half the screen.
+    * A user knows that if he taps the screen, outside of the keyboard, keyboard will hide.
+    * But in our app, tapping outside of the keyboard you hit a category tile, therefore you will be taken to the category screen.
+    * To avoid this, when user taps a category, we check if he did it to actually go to the category view or to just remove focus to the
+    * search field and hide the keyboard.
+    *
+    * TODO: Test on device
+    */
+    if(!angular.element(document.activeElement).hasClass('js-searchField')) {
+      $location.path('app/category/' + category.title + '/' + category.id);
+    }
   };
 
   var bgColors = [
