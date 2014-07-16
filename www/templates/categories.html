@@ -9,7 +9,13 @@
   <div class="bar bar-subheader item-input-inset">
     <label class="item-input-wrapper">
       <i class="icon ion-ios7-search placeholder-icon"></i>
-      <input class="js-searchField" type="search" placeholder="What do you want to recycle?" ng-model="search.item.name">
+      <input
+        class="js-searchField"
+        ng-class="{'isLoading': isLoading}"
+        type="search"
+        placeholder="What do you want to recycle?"
+        ng-model="search.item.name"
+        ng-change="searchByString()">
     </label>
     <button class="button button-small button-energized" ng-if="search.item.name != ''" ng-click="clearSearchField()">
       Cancel
@@ -20,11 +26,13 @@
 
   <ion-content class="has-subheader item-animate" ng-show="search.item.name != ''">
     <ul class="list">
-      <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
-        {{item.item.name}}
-        <button class="button button-positive">
-          <i class="icon ion-star"></i>
-        </button>
+      <li class="item item-avatar" ng-repeat="item in items" ng-click="goToItemDetail(item)">
+        <img src="img/ionic.png">
+        <h2>{{item.item.name}}</h2>
+        <p>
+          in
+          <span ng-repeat="category in item.item.categories">{{category.title}}</span>
+        </p>
       </li>
     </ul>
   </ion-content>

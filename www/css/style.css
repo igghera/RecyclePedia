@@ -89,3 +89,8 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+
+/*Show spinner in search input during loading*/
+.js-searchField.isLoading {
+  background: url('http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif') no-repeat right center !important;
+}

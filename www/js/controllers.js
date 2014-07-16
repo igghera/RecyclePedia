@@ -60,29 +60,56 @@ angular.module('recyclepedia.controllers', [])
 
 .controller('CategoriesCtrl', function($scope, ApiService, $location) {
   $scope.categories = [];
+  $scope.items = [];
   $scope.search = {
     item: {
       name: ''
     }
   };
 
-  // temporary
+  // Whether or not we are requesting data to the backend
+  $scope.isLoading = false;
 
-  $scope.items = [];
+  /**
+  * Hold the handle on the current request for data. Since we want to be able to abort the request, mid-stream,
+  * we need to hold onto the request which will have the .abort() method on it.
+  */
+  var searchRequest = null;
 
-  ApiService.getItemsForCategory(1).then(function (response) {
-    $scope.items = response.data.response;
-  });
+  // I abort the current request (if its running).
+  $scope.abortRequest = function() {
+    return searchRequest && searchRequest.abort();
+  };
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
     $location.path('app/item/' + item.item.name);
+
+    // Save this item in history
+    var history = angular.fromJson(window.localStorage['history']) || [];
+    window.localStorage['history'] = history.push(item);
+    // TODO: implement QUEUE
   };
 
   // end temporary
 
   $scope.clearSearchField = function() {
     $scope.search.item.name = '';
+  };
+
+  $scope.searchByString = function() {
+    $scope.abortRequest();
+
+    if($scope.search.item.name === '') {
+      return;
+    }
+
+    $scope.isLoading = true;
+
+    (searchRequest = ApiService.search($scope.search.item.name)).then(function(newItems) {
+      $scope.isLoading = false;
+      $scope.items = newItems.data.response;
+    });
   };
 
   $scope.gotoItemsList = function(category) {

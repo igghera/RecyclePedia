@@ -39,7 +39,37 @@ angular.module('recyclepedia.services', [])
     };
 
     factory.search = function(query) {
-      return $http.get('http://192.168.2.18:3000/api/2/councils/153/council_items/search?q=' + query);
+      // The timeout property of the http request takes a deferred value
+      // that will abort the underying AJAX request if / when the deferred
+      // value is resolved.
+      var deferredAbort = $q.defer();
+      var councilId = angular.fromJson(window.localStorage['council']).id;
+
+      var request = $http({
+          method: "get",
+          url: 'http://tramselcycer2013.herokuapp.com/api/2/councils/'+ councilId +'/council_items/search?q=' + query,
+          timeout: deferredAbort.promise
+      });
+
+      var promise = request.then(function(response) {
+          console.log('Success baby');
+          return(response);
+        }, function(response) {
+          return($q.reject( "Something went wrong"));
+        }
+      );
+
+      promise.abort = function() {
+        deferredAbort.resolve();
+      };
+
+      promise.finally(function() {
+        console.info( "Cleaning up object references." );
+        promise.abort = angular.noop;
+        deferredAbort = request = promise = null;
+      });
+
+      return(promise);
     };
 
     return factory;
