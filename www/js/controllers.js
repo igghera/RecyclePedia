@@ -52,6 +52,7 @@ angular.module('recyclepedia.controllers', [])
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
+    debugger;
     $location.path('app/item/' + item.item.name);
   };
 })
@@ -66,6 +67,10 @@ angular.module('recyclepedia.controllers', [])
       name: ''
     }
   };
+
+  var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+  var headerHeight = 44;
+  $scope.tilesHeight = (viewportHeight - 88) / 4  + 'px';
 
   // Whether or not we are requesting data to the backend
   $scope.isLoading = false;
@@ -152,6 +157,7 @@ angular.module('recyclepedia.controllers', [])
 
     angular.forEach(response.data.response, function(c) {
       c.color = bgColors[i];
+      c.img = 'img/category-icons/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
       $scope.categories.push(c);
       i++;
     });
@@ -162,5 +168,8 @@ angular.module('recyclepedia.controllers', [])
 
 .controller('ItemCtrl', function($scope, $stateParams, ApiService) {
   $scope.item = ApiService.selectedItem;
-  $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
+  if($scope.item.item.avatar.avatar.url !== null) {
+    $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
+    ImgCache.cacheFile('http://my-cdn.com/users/2/profile.jpg');
+  }
 })

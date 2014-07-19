@@ -27,7 +27,7 @@
   <ion-content class="has-subheader item-animate" ng-show="search.item.name != ''">
     <ul class="list">
       <li class="item item-avatar" ng-repeat="item in items" ng-click="goToItemDetail(item)">
-        <img src="img/ionic.png">
+        <img ng-src="img/ionic.png">
         <h2>{{item.item.name}}</h2>
         <p>
           in
@@ -37,15 +37,17 @@
     </ul>
   </ion-content>
 
-  <ion-content class="has-subheader" ng-show="search.item.name == ''">
-    <div class="row categories" ng-repeat="rows in categories | partition:3">
+  <ion-content scroll="false" class="has-subheader categoriesContainer" ng-show="search.item.name == ''">
+    <div class="row categories"
+      ng-repeat="rows in categories | partition:3"
+      ng-tyle='{height": tilesHeight}'>
       <a class="col category"
          href=""
          ng-repeat="category in rows"
-         ng-style='{"background-color": category.color}'
+         ng-style='{"background-color": category.color, "height": tilesHeight}'
          ng-click="gotoItemsList(category)">
         <div>
-          <img ng-src="img/{{category.title}}.png" alt="" height="70">
+          <img ng-src="{{category.img}}" src="{{category.img}}" alt="" height="70">
           <!-- <i class="icon ion-leaf category-icon"></i> -->
         </div>
         {{category.title}}

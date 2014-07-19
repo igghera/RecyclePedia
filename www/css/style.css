@@ -15,14 +15,19 @@
   text-align: center;
 }
 
+.categoriesContainer {
+  margin-top: 0;
+}
+
 .row.categories {
   padding: 0;
-  height: 20%;
+}
+
+.row + .row {
+  margin-top: 0;
 }
 
 .category, .category-blank {
-  height: 125px;
-  /*margin: 5px;*/
 }
 
 .text-left {

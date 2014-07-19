@@ -9,10 +9,11 @@
 
   <div class="bar bar-subheader bar-dark">
     <h2 class="title">Dispose in {{item.correct_bin.colour}} bin</h2>
+    <img ng-src="img/bins/{{item.correct_bin.colour}}.png" alt="" height="44">
   </div>
 
   <ion-content class="has-subheader">
-    <img class="full-image" src="img/leaves.png">
+    <img class="full-image" ng-src="{{item.avatarUrl}}">
     <div class="padding">
 
       <div class="card">
@@ -20,18 +21,18 @@
           Description
         </div>
         <div class="item item-text-wrap text-left">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum nobis aut blanditiis eius quo earum id maiores reiciendis! Sunt rem ducimus error. Pariatur rem voluptatum, ipsum similique perspiciatis ex, repudiandae!
+          {{item.item.description}}
         </div>
       </div>
 
-      <div class="card">
+      <!-- <div class="card">
         <div class="item item-divider">
           Note
         </div>
         <div class="item item-text-wrap text-left">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum nobis aut blanditiis eius quo earum id maiores reiciendis! Sunt rem ducimus error. Pariatur rem voluptatum, ipsum similique perspiciatis ex, repudiandae!
         </div>
-      </div>
+      </div> -->
 
     </div>
   </ion-content>

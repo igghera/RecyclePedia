@@ -21,14 +21,31 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
     // console.log(window.ionic.Platform);
     // ionic.Platform.fullScreen(false, true);
-  });
 
-  if(!angular.isUndefined(window.localStorage['council'])) {
-    $location.path('/app/categories');
-  }
+    // write log to console
+    ImgCache.options.debug = true;
+
+    // increase allocated space on Chrome to 50MB, default was 10MB
+    // ImgCache.options.chromeQuota = 50*1024*1024;
+
+    ImgCache.init(function(){
+      console.log('ImgCache init: success!');
+
+      // from within this function you're now able to call other ImgCache methods
+      // or you can wait for the ImgCacheReady event
+
+
+      if(!angular.isUndefined(window.localStorage['council'])) {
+        $location.path('/app/categories');
+      }
+    }, function(){
+        console.log('ImgCache init: error! Check the log for errors');
+    });
+  });
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
     .state('app', {
