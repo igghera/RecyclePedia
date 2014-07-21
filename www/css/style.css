@@ -99,3 +99,11 @@
 .js-searchField.isLoading {
   background: url('http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif') no-repeat right center !important;
 }
+
+.logo-header {
+  padding-top: 10px;
+}
+
+.logo-header img {
+  height: 31px;
+}

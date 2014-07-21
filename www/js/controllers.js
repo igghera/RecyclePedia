@@ -156,7 +156,7 @@ angular.module('recyclepedia.controllers', [])
     var i = 0;
 
     angular.forEach(response.data.response, function(c) {
-      c.color = bgColors[i];
+      c.color = '#ffffff';
       c.img = 'img/category-icons/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
       $scope.categories.push(c);
       i++;
