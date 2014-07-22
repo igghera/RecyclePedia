@@ -1,11 +1,13 @@
 angular.module('recyclepedia.services', [])
   .factory('ApiService', function($http, $q) {
     var factory = {};
+    var apiUrl = 'http://tramselcycer2013.herokuapp.com';
+    // var apiUrl = 'http://recyclesmart.com.au';
 
     factory.selectedItem = null;
 
     factory.getCategories = function() {
-      // return $http.get('http://tramselcycer2013.herokuapp.com/api/2/categories');
+      // return $http.get(apiUrl + '/api/2/categories');
 
       var mockData = {
         data: {
@@ -30,12 +32,12 @@ angular.module('recyclepedia.services', [])
     };
 
     factory.getCouncils = function() {
-      return $http.get('http://tramselcycer2013.herokuapp.com/api/2/councils');
+      return $http.get(apiUrl + '/api/2/councils');
     };
 
     factory.getItemsForCategory = function(categoryId) {
       var councilId = angular.fromJson(window.localStorage['council']).id;
-      return $http.get('http://tramselcycer2013.herokuapp.com/api/2/councils/'+ councilId +'/category/'+ categoryId +'/council_category_items');
+      return $http.get(apiUrl + '/api/2/councils/'+ councilId +'/category/'+ categoryId +'/council_category_items');
     };
 
     factory.search = function(query) {
@@ -47,7 +49,7 @@ angular.module('recyclepedia.services', [])
 
       var request = $http({
           method: "get",
-          url: 'http://tramselcycer2013.herokuapp.com/api/2/councils/'+ councilId +'/council_items/search?q=' + query,
+          url: apiUrl + '/api/2/councils/'+ councilId +'/council_items/search?q=' + query,
           timeout: deferredAbort.promise
       });
 
@@ -64,7 +66,6 @@ angular.module('recyclepedia.services', [])
       };
 
       promise.finally(function() {
-        console.info( "Cleaning up object references." );
         promise.abort = angular.noop;
         deferredAbort = request = promise = null;
       });

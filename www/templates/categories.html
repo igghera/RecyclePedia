@@ -1,4 +1,10 @@
-<ion-header-bar class="bar-light">
+<<!-- ion-view title="Our Awesome Header">
+      <ion-content>
+        Here's the content for this page
+      </ion-content>
+    </ion-view> -->
+
+<!-- <ion-header-bar class="bar-light" animation="slide-left-right-ios7">
   <div class="buttons left-buttons"> </div>
   <h1 class="title logo-header">
     <img src="img/logo-header.png" alt="">
@@ -6,16 +12,12 @@
   <div class="buttons">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </div>
-</ion-header-bar>
+</ion-header-bar> -->
 
 
-<ion-view title="Categories" left-buttons="leftButtons"  hide-back-button="true">
+<ion-view title=""  hide-back-button="true">
 
   <!-- top buttons -->
-
-  <ion-nav-buttons side="right">
-    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons>
 
   <div class="bar bar-subheader item-input-inset">
     <label class="item-input-wrapper">
@@ -51,12 +53,13 @@
   <ion-content scroll="false" class="has-subheader categoriesContainer" ng-show="search.item.name == ''">
     <div class="row categories"
       ng-repeat="rows in categories | partition:3"
-      ng-tyle='{height": tilesHeight}'>
+      ng-class="{'first-row': $first, 'last-row': $last}"> <!-- ng-tyle='{height": tilesHeight}' -->
       <a class="col category"
          href=""
          ng-repeat="category in rows"
          ng-style='{"background-color": category.color, "height": tilesHeight}'
-         ng-click="gotoItemsList(category)">
+         ng-click="gotoItemsList(category)"
+         ng-class="{'first': $first, 'last': $last}">
         <div>
           <img ng-src="{{category.img}}" src="{{category.img}}" alt="" height="70">
           <!-- <i class="icon ion-leaf category-icon"></i> -->

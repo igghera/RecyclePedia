@@ -52,7 +52,6 @@ angular.module('recyclepedia.controllers', [])
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
-    debugger;
     $location.path('app/item/' + item.item.name);
   };
 })
@@ -126,37 +125,16 @@ angular.module('recyclepedia.controllers', [])
     * But in our app, tapping outside of the keyboard you hit a category tile, therefore you will be taken to the category screen.
     * To avoid this, when user taps a category, we check if he did it to actually go to the category view or to just remove focus to the
     * search field and hide the keyboard.
-    *
-    * TODO: Test on device
     */
     if(!angular.element(document.activeElement).hasClass('js-searchField')) {
       $location.path('app/category/' + category.title + '/' + category.id);
     }
   };
 
-  var bgColors = [
-    '#dc5629',
-    '#e17a25',
-    '#f0b31d',
-    '#f9e607',
-    '#87ba3b',
-    '#14a88b',
-    '#278fc6',
-    '#0071bc',
-    '#6d4e88',
-    '#9a437e',
-    '#cc427d',
-    '#fd625e',
-    '#dc5629',
-    '#e17a25',
-    '#f0b31d'
-  ];
-
   ApiService.getCategories().then(function (response) {
     var i = 0;
 
     angular.forEach(response.data.response, function(c) {
-      c.color = '#ffffff';
       c.img = 'img/category-icons/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
       $scope.categories.push(c);
       i++;

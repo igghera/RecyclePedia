@@ -17,17 +17,20 @@
 
 .categoriesContainer {
   margin-top: 0;
+  /*border: 3px solid #626262;*/
 }
 
 .row.categories {
   padding: 0;
+  border-bottom: 3px solid #626262;
+}
+
+.row.categories.last-row {
+  border-bottom: none;
 }
 
 .row + .row {
   margin-top: 0;
-}
-
-.category, .category-blank {
 }
 
 .text-left {
@@ -35,14 +38,18 @@
 }
 
 .category {
-  background-color: #0296c0;
-  /*border-radius: 5px;*/
+  background-color: #ffffff;
   text-align: center;
   color: black;
   text-decoration: none;
   padding: 10px;
   font-size: 0.9em;
   line-height: 16px;
+  border-right: 3px solid #626262;
+}
+
+.category.last {
+  border: none;
 }
 
 .category-icon {
