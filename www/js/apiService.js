@@ -1,8 +1,8 @@
 angular.module('recyclepedia.services', [])
   .factory('ApiService', function($http, $q) {
     var factory = {};
-    var apiUrl = 'http://tramselcycer2013.herokuapp.com';
-    // var apiUrl = 'http://recyclesmart.com.au';
+    // var apiUrl = 'http://tramselcycer2013.herokuapp.com';
+    var apiUrl = 'http://www.recyclesmart.com.au';
 
     factory.selectedItem = null;
 

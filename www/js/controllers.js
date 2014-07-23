@@ -147,7 +147,8 @@ angular.module('recyclepedia.controllers', [])
 .controller('ItemCtrl', function($scope, $stateParams, ApiService) {
   $scope.item = ApiService.selectedItem;
   if($scope.item.item.avatar.avatar.url !== null) {
-    $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
-    ImgCache.cacheFile('http://my-cdn.com/users/2/profile.jpg');
+    // $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
+    $scope.item.avatarUrl = 'http://www.recyclesmart.com.au' + $scope.item.item.avatar.avatar.url;
+    // ImgCache.cacheFile($scope.item.avatarUrl);
   }
 })
