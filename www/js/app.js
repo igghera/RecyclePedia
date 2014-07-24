@@ -44,7 +44,16 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+// Workaround for Windows Phone, from http://www.stephenpauladams.com/articles/angularjs-cordova-windows-phone-quirk/
+.config(function( $compileProvider ) {
+  $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|ghttps?|ms-appx|x-wmapp0):/);
+  // Angular before v1.2 uses $compileProvider.urlSanitizationWhitelist(...)
+})
+
+.config(function($stateProvider, $urlRouterProvider, $compileProvider) {
+  // Workaround for Windows Phone #2 (thanks Microsoft)
+  // from http://forum.ionicframework.com/t/image-displaying-issue-with-ng-repeat/3768/9
+  $compileProvider.imgSrcSanitizationWhitelist('img/');
 
   $stateProvider
 

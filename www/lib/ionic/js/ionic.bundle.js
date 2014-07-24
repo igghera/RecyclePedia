@@ -42345,9 +42345,12 @@ function($ionicViewService, $rootScope, $animate, $compile, $ionicNavBarConfig) 
       //We cannot transclude here because it breaks element.data() inheritance on compile
       tElement
         .addClass('bar bar-header nav-bar ' + $ionicNavBarConfig.transition)
-        .append('<div class="buttons left-buttons"></div>' +
+        .append(
+          '<div class="buttons left-buttons"> ' +
+          '</div>' +
           '<h1 ng-bind-html="title" class="title"></h1>' +
-          '<div class="buttons right-buttons"></div>'
+          '<div class="buttons right-buttons"> ' +
+          '</div>'
         );
 
       return { pre: prelink };
