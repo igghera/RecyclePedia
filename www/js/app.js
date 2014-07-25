@@ -53,7 +53,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 .config(function($stateProvider, $urlRouterProvider, $compileProvider) {
   // Workaround for Windows Phone #2 (thanks Microsoft)
   // from http://forum.ionicframework.com/t/image-displaying-issue-with-ng-repeat/3768/9
-  $compileProvider.imgSrcSanitizationWhitelist('img/');
+  $compileProvider.imgSrcSanitizationWhitelist(/^\s*(img\/|https?|file|blob|cdvfile):|data:image\//);
 
   $stateProvider
 

@@ -143,6 +143,10 @@ img.logo-header {
   text-align: center;
 }
 
+.button.button-energized {
+  background-color: #e97a24;
+}
+
 .has-subheader {
   top: 94px;
 }

@@ -47,7 +47,25 @@ angular.module('recyclepedia.controllers', [])
   $scope.items = [];
 
   ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
-    $scope.items = response.data.response;
+    var items = response.data.response;
+
+    angular.forEach(items, function(item) {
+      var categoryList = '';
+
+
+      for(var i = 0, len = item.item.categories.length; i < len; i++) {
+        var categoryName = item.item.categories[i].title;
+        categoryList += categoryName;
+
+        if(i < len - 1) {
+          categoryList += ', ';
+        }
+      }
+
+      item.categoryList = categoryList;
+    });
+
+    $scope.items = items;
   });
 
   $scope.goToItemDetail = function(item) {
@@ -89,8 +107,8 @@ angular.module('recyclepedia.controllers', [])
     $location.path('app/item/' + item.item.name);
 
     // Save this item in history
-    var history = angular.fromJson(window.localStorage['history']) || [];
-    window.localStorage['history'] = history.push(item);
+    // var history = angular.fromJson(window.localStorage['history']) || [];
+    // window.localStorage['history'] = history.push(item);
     // TODO: implement QUEUE
   };
 
@@ -111,7 +129,26 @@ angular.module('recyclepedia.controllers', [])
 
     (searchRequest = ApiService.search($scope.search.item.name)).then(function(newItems) {
       $scope.isLoading = false;
-      $scope.items = newItems.data.response;
+
+      // Save the returned list
+      var items = newItems.data.response;
+      // Parse the list of categories for each item and make it a nice comma-separated-values list
+      angular.forEach(items, function(item) {
+        var categoryList = '';
+
+        for(var i = 0, len = item.item.categories.length; i < len; i++) {
+          var categoryName = item.item.categories[i].title;
+          categoryList += categoryName;
+
+          if(i < len - 1) {
+            categoryList += ', ';
+          }
+        }
+
+        item.categoryList = categoryList;
+      });
+
+      $scope.items = items;
     });
   };
 

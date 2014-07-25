@@ -6,25 +6,40 @@
     <button menu-toggle="right"class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons> -->
 
-  <!-- Search field -->
+  <!-- search input -->
 
-  <div class="bar bar-subheader item-input-inset">
+  <div class="bar bar-subheader item-input-inset search-input-container">
     <label class="item-input-wrapper">
-      <i class="icon ion-ios7-search placeholder-icon"></i>
-      <input type="search" placeholder="What do you want to recycle?" ng-model="search.item.name">
+      <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      <input class="js-searchField"
+        type="search"
+        placeholder="What would you like to recycle?"
+        ng-model="search.item.name">
     </label>
+    <button class="button button-small button-energized" ng-if="search.item.name != ''" ng-click="clearSearchField()">
+      Cancel
+    </button>
   </div>
 
   <!-- View content (list of items) -->
 
   <ion-content class="has-subheader">
     <ul class="list">
-      <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
+      <li class="item item-avatar" ng-repeat="item in items | filter:search.item.name" ng-click="goToItemDetail(item)">
+        <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
+        <h2>{{item.item.name}}</h2>
+        <p>
+          in
+          <span>{{item.categoryList}}</span>
+        </p>
+      </li>
+
+      <!-- <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
         {{item.item.name}}
         <button class="button button-positive">
           <i class="icon ion-star"></i>
         </button>
-      </li>
+      </li> -->
     </ul>
   </ion-content>
 </ion-view>

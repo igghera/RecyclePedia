@@ -17,13 +17,12 @@
 
 <ion-view title='<img src="img/logo-header.png" class="logo-header">'  hide-back-button="true">
 
-  <!-- top buttons -->
+  <!-- search input -->
 
   <div class="bar bar-subheader item-input-inset search-input-container">
     <label class="item-input-wrapper">
       <i class="icon ion-search placeholder-icon custom-search-icon"></i>
-      <input
-        class="js-searchField"
+      <input class="js-searchField"
         ng-class="{'isLoading': isLoading}"
         type="search"
         placeholder="What would you like to recycle?"
@@ -40,11 +39,11 @@
   <ion-content class="has-subheader item-animate" ng-show="search.item.name != ''">
     <ul class="list">
       <li class="item item-avatar" ng-repeat="item in items" ng-click="goToItemDetail(item)">
-        <img ng-src="img/ionic.png">
+        <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
         <h2>{{item.item.name}}</h2>
         <p>
           in
-          <span ng-repeat="category in item.item.categories">{{category.title}}</span>
+          <span>{{item.categoryList}}</span>
         </p>
       </li>
     </ul>
