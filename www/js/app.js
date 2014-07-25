@@ -95,7 +95,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     })
 
     .state('app.item', {
-      url: "/item/:materialName",
+      url: "/item/",
       views: {
         'menuContent' :{
           templateUrl: "templates/item.html",

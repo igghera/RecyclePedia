@@ -70,7 +70,8 @@ angular.module('recyclepedia.controllers', [])
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
-    $location.path('app/item/' + item.item.name);
+    // window.localStorage['selectedItem'] = angular.toJson(council);
+    $location.path('app/item/');
   };
 })
 
@@ -180,11 +181,11 @@ angular.module('recyclepedia.controllers', [])
 
 // Item detail
 
-.controller('ItemCtrl', function($scope, $stateParams, ApiService) {
+.controller('ItemCtrl', function($scope, ApiService) {
   $scope.item = ApiService.selectedItem;
-  if($scope.item.item.avatar.avatar.url !== null) {
-    // $scope.item.avatarUrl = 'http://tramselcycer2013.herokuapp.com' + $scope.item.item.avatar.avatar.url;
-    $scope.item.avatarUrl = 'http://www.recyclesmart.com.au' + $scope.item.item.avatar.avatar.url;
+
+  if($scope.item.item.avatar.avatar.medium.url !== null) {
+    $scope.item.avatarUrl = 'http://www.recyclesmart.com.au' + $scope.item.item.avatar.avatar.medium.url;
     // ImgCache.cacheFile($scope.item.avatarUrl);
   }
 })
