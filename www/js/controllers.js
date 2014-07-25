@@ -68,8 +68,7 @@ angular.module('recyclepedia.controllers', [])
   };
 
   var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  var headerHeight = 44;
-  $scope.tilesHeight = (viewportHeight - 88) / 4  + 'px';
+  $scope.tilesHeight = (viewportHeight - 103) / 4  + 'px';
 
   // Whether or not we are requesting data to the backend
   $scope.isLoading = false;

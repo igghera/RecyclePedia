@@ -48,12 +48,18 @@
   border-right: 3px solid #626262;
 }
 
+.category img {
+  height: 65px;
+}
+
 .category.last {
   border: none;
 }
 
 .category-icon {
-  font-size: 60px;
+  width: 65px;
+  height: 65px;
+  display: inline-block;
 }
 
 .material-icon {
@@ -110,4 +116,62 @@
 img.logo-header {
   margin-top: 9px;
   height: 28px;
+}
+
+/*Style search field*/
+.search-input-container {
+  background-color: #54a0d4;
+  padding: 5px;
+  height: 50px;
+}
+
+.item-input-wrapper {
+  background-color: #fff;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  padding: 3px;
+}
+
+.custom-search-icon {
+  font-size: 22px;
+  background-color: #e97a24;
+  border-radius: 50%;
+  color: #fff;
+  width: 33px;
+  height: 30px;
+  text-align: center;
+}
+
+.has-subheader {
+  top: 94px;
+}
+
+.placeholder-icon:first-child {
+  padding: 0;
+}
+
+::-webkit-input-placeholder {
+   color: red;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: red;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: red;
+}
+
+:-ms-input-placeholder {
+   color: red;
+}
+
+
+/* iPad in portrait */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+
 }

@@ -19,14 +19,14 @@
 
   <!-- top buttons -->
 
-  <div class="bar bar-subheader item-input-inset">
+  <div class="bar bar-subheader item-input-inset search-input-container">
     <label class="item-input-wrapper">
-      <i class="icon ion-ios7-search placeholder-icon"></i>
+      <i class="icon ion-search placeholder-icon custom-search-icon"></i>
       <input
         class="js-searchField"
         ng-class="{'isLoading': isLoading}"
         type="search"
-        placeholder="What do you want to recycle?"
+        placeholder="What would you like to recycle?"
         ng-model="search.item.name"
         ng-change="searchByString()">
     </label>
@@ -60,10 +60,12 @@
          ng-style='{"background-color": category.color, "height": tilesHeight}'
          ng-click="gotoItemsList(category)"
          ng-class="{'first': $first, 'last': $last}">
-        <div>
-          <img ng-src="{{category.img}}" src="{{category.img}}" alt="" height="70">
-          <!-- <i class="icon ion-leaf category-icon"></i> -->
-        </div>
+
+        <span class="category-icon" ng-style="{'background-image': 'url(' + category.img + ')'}"></span>
+
+        <!-- <div class>
+          <img ng-src="{{category.img}}" src="{{category.img}}">
+        </div> -->
         {{category.title}}
       </a>
     </div>
