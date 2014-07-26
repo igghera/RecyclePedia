@@ -23,6 +23,7 @@
 .row.categories {
   padding: 0;
   border-bottom: 3px solid #626262;
+  height: 25%;
 }
 
 .row.categories.last-row {
@@ -158,9 +159,17 @@ img.logo-header {
 /* Footer with standard configurations */
 
 .standard-configs {
-  height: 170px;
-  border-top: 1px solid;
+  height: 200px;
   display: block;
+  padding: 0;
+}
+
+.standard-configs .card {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 .has-custom-footer {
@@ -168,41 +177,54 @@ img.logo-header {
 }
 
 .config.multi-stream-plus-green-bin {
-  background-image: url('../img/bin-configurations/configuration-1.png');
+  /*background-image: url('../img/bin-configurations/configuration-1.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%;*/
+  border-right: 1px solid #626262;
+  border-bottom: 1px solid #626262;
 }
 
 .config.commingled-no-green-bin {
-  background-image: url('../img/bin-configurations/configuration-2.png');
+  /*background-image: url('../img/bin-configurations/configuration-2.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%;*/
+  border-left: 1px solid #626262;
+  border-bottom: 1px solid #626262;
 }
 
 .config.multi-stream-no-green-bin {
-  background-image: url('../img/bin-configurations/configuration-3.png');
+  /*background-image: url('../img/bin-configurations/configuration-3.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%;*/
+  border-right: 1px solid #626262;
+  border-top: 1px solid #626262;
 }
 
 .config.commingled-plus-green-bin {
-  background-image: url('../img/bin-configurations/configuration-4.png');
+  /*background-image: url('../img/bin-configurations/configuration-4.png');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: 100% 100%;*/
+  border-left: 1px solid #626262;
+  border-top: 1px solid #626262;
 }
 
 .config {
-  height: 75px;
+  height: 81px;
 }
 
 .config a {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.config img {
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* iPad in portrait */

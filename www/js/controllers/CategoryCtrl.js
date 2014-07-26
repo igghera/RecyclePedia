@@ -1,5 +1,5 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService) {
+.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService, $ionicLoading) {
   $scope.categoryName = $stateParams.categoryName;
   $scope.categoryId = $stateParams.categoryId;
   // Model for search input
@@ -9,14 +9,19 @@ angular.module('recyclepedia.controllers')
     }
   };
 
+  // Display loading indicator
+  $ionicLoading.show({
+    template: 'Loading...'
+  });
+
   $scope.items = [];
 
   ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
+    $ionicLoading.hide();
     var items = response.data.response;
 
     angular.forEach(items, function(item) {
       var categoryList = '';
-
 
       for(var i = 0, len = item.item.categories.length; i < len; i++) {
         var categoryName = item.item.categories[i].title;

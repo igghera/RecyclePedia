@@ -15,7 +15,7 @@
 </ion-header-bar> -->
 
 
-<ion-view title='<img src="img/logo-header.png" class="logo-header">'  hide-back-button="true">
+<ion-view title='<img src="img/logo-header.png" class="logo-header">' hide-back-button="true">
 
   <!-- search input -->
 
@@ -56,16 +56,18 @@
       <a class="col category"
          href=""
          ng-repeat="category in rows"
-         ng-style='{"background-color": category.color, "height": tilesHeight}'
+         ng-style='{"background-color": category.color}'
          ng-click="gotoItemsList(category)"
-         ng-class="{'first': $first, 'last': $last}">
+         ng-class="{'first': $first, 'last': $last}"> <!-- , "height": tilesHeight -->
 
         <span class="category-icon" ng-style="{'background-image': 'url(' + category.img + ')'}"></span>
 
         <!-- <div class>
           <img ng-src="{{category.img}}" src="{{category.img}}">
         </div> -->
-        {{category.title}}
+        <div>
+          {{category.title}}
+        </div>
       </a>
     </div>
   </ion-content>
