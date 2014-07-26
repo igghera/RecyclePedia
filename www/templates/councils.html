@@ -2,12 +2,48 @@
   <!-- <ion-nav-buttons side="right">
     <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons> -->
-  <ion-content class="has-header">
+
+  <!-- search input -->
+
+  <div class="bar bar-subheader item-input-inset search-input-container">
+    <label class="item-input-wrapper">
+      <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      <input class="js-searchField"
+        ng-class="{'isLoading': isLoading}"
+        type="search"
+        placeholder="Find your local council"
+        ng-model="search.council.name"
+        ng-change="searchByString()">
+    </label>
+    <button class="button button-small button-energized" ng-if="search.council.name != ''" ng-click="clearSearchField()">
+      Cancel
+    </button>
+  </div>
+
+  <ion-content class="has-subheader has-custom-footer">
     <ion-list>
-      <a class="item item-avatar" ng-repeat="council in councils" href="" ng-click="saveCouncil(council)">
-        <img src="img/ionic.png" ng-src="{{council.logoUrl}}">
+      <a class="item item-avatar" ng-repeat="council in councils | filter:search.council.name" href="" ng-click="saveCouncil(council)">
+        <img ng-src="{{council.logoUrl}}">
         <h2>{{council.name}}</h2>
       </a>
     </ion-list>
   </ion-content>
+  <div class="bar bar-footer bar-light standard-configs">
+    <div class="row">
+      <div class="col col-50 config multi-stream-plus-green-bin">
+        <a href="" ng-click="saveStandardConfig(0, $event)"></a>
+      </div>
+      <div class="col col-50 config commingled-no-green-bin">
+        <a href="" ng-click="saveStandardConfig(1, $event)"></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col col-50 config multi-stream-no-green-bin">
+        <a href="" ng-click="saveStandardConfig(2, $event)"></a>
+      </div>
+      <div class="col col-50 config commingled-plus-green-bin">
+        <a href="" ng-click="saveStandardConfig(3, $event)"></a>
+      </div>
+    </div>
+  </div>
 </ion-view>

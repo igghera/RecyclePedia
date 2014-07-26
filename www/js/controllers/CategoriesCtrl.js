@@ -1,82 +1,4 @@
-angular.module('recyclepedia.controllers', [])
-
-// Wrapper/menu
-
-.controller('AppCtrl', function($scope) {
-  var selectedCouncil = angular.fromJson(window.localStorage['council']);
-
-  $scope.selectedCouncil = angular.isUndefined(selectedCouncil) ? '' : selectedCouncil.name;
-  // Listen for event: council-changed
-  $scope.$on('council-changed', function(event, newCouncil) {
-    $scope.selectedCouncil = newCouncil;
-  });
-})
-
-// Councils
-
-.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location, $ionicLoading) {
-  $ionicLoading.show({
-    template: 'Loading...'
-  });
-
-  $scope.councils = [];
-
-  $scope.saveCouncil = function(council) {
-    window.localStorage['council'] = angular.toJson(council);
-
-    // Broadcast event to notify the menu that council has changed
-    $rootScope.$broadcast('council-changed', council.name);
-    $location.path('/app/categories');
-  };
-
-  ApiService.getCouncils().then(function (response) {
-    angular.forEach(response.data.response, function(council) {
-      council.logoUrl = 'http://tramselcycer2013.herokuapp.com' + council.logo.logo.url;
-      $scope.councils.push(council);
-      $ionicLoading.hide();
-    });
-  });
-})
-
-// Materials
-
-.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService) {
-  $scope.categoryName = $stateParams.categoryName;
-  $scope.categoryId = $stateParams.categoryId;
-
-  $scope.items = [];
-
-  ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
-    var items = response.data.response;
-
-    angular.forEach(items, function(item) {
-      var categoryList = '';
-
-
-      for(var i = 0, len = item.item.categories.length; i < len; i++) {
-        var categoryName = item.item.categories[i].title;
-        categoryList += categoryName;
-
-        if(i < len - 1) {
-          categoryList += ', ';
-        }
-      }
-
-      item.categoryList = categoryList;
-    });
-
-    $scope.items = items;
-  });
-
-  $scope.goToItemDetail = function(item) {
-    ApiService.selectedItem = item;
-    // window.localStorage['selectedItem'] = angular.toJson(council);
-    $location.path('app/item/');
-  };
-})
-
-// Categories
-
+angular.module('recyclepedia.controllers')
 .controller('CategoriesCtrl', function($scope, ApiService, $location) {
   $scope.categories = [];
   $scope.items = [];
@@ -105,15 +27,13 @@ angular.module('recyclepedia.controllers', [])
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
-    $location.path('app/item/' + item.item.name);
+    $location.path('app/item/');
 
     // Save this item in history
     // var history = angular.fromJson(window.localStorage['history']) || [];
     // window.localStorage['history'] = history.push(item);
     // TODO: implement QUEUE
   };
-
-  // end temporary
 
   $scope.clearSearchField = function() {
     $scope.search.item.name = '';
@@ -177,15 +97,4 @@ angular.module('recyclepedia.controllers', [])
       i++;
     });
   });
-})
-
-// Item detail
-
-.controller('ItemCtrl', function($scope, ApiService) {
-  $scope.item = ApiService.selectedItem;
-
-  if($scope.item.item.avatar.avatar.medium.url !== null) {
-    $scope.item.avatarUrl = 'http://www.recyclesmart.com.au' + $scope.item.item.avatar.avatar.medium.url;
-    // ImgCache.cacheFile($scope.item.avatarUrl);
-  }
 })

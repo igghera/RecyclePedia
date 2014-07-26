@@ -155,22 +155,55 @@ img.logo-header {
   padding: 0;
 }
 
-::-webkit-input-placeholder {
-   color: red;
+/* Footer with standard configurations */
+
+.standard-configs {
+  height: 170px;
+  border-top: 1px solid;
+  display: block;
 }
 
-:-moz-placeholder { /* Firefox 18- */
-   color: red;
+.has-custom-footer {
+  bottom: 150px;
 }
 
-::-moz-placeholder {  /* Firefox 19+ */
-   color: red;
+.config.multi-stream-plus-green-bin {
+  background-image: url('../img/bin-configurations/configuration-1.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
-:-ms-input-placeholder {
-   color: red;
+.config.commingled-no-green-bin {
+  background-image: url('../img/bin-configurations/configuration-2.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
+.config.multi-stream-no-green-bin {
+  background-image: url('../img/bin-configurations/configuration-3.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.config.commingled-plus-green-bin {
+  background-image: url('../img/bin-configurations/configuration-4.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.config {
+  height: 75px;
+}
+
+.config a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 
 /* iPad in portrait */
 @media only screen
