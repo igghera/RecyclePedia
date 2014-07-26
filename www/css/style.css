@@ -227,6 +227,28 @@ img.logo-header {
   max-height: 100%;
 }
 
+/* Item view style */
+.bar-rs-blue {
+  background-color: #54a0d4;
+}
+
+.bar-rs-blue h2 {
+  color: white;
+}
+
+.correct-bin-card {
+  margin: 0 5px 5px;
+}
+
+.correct-bin-img {
+  height: 60px;
+}
+
+.correct-bin-text {
+  line-height: 60px;
+  font-size: 1.2em;
+}
+
 /* iPad in portrait */
 @media only screen
 and (min-device-width : 768px)

@@ -48,7 +48,9 @@ angular.module('recyclepedia.controllers')
 
     $scope.isLoading = true;
 
-    (searchRequest = ApiService.search($scope.search.item.name)).then(function(newItems) {
+    var searchString = $scope.search.item.name.toLowerCase();
+
+    (searchRequest = ApiService.search(searchString)).then(function(newItems) {
       $scope.isLoading = false;
 
       // Save the returned list

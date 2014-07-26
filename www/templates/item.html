@@ -1,15 +1,24 @@
 <ion-view>
 
-  <!-- <ion-nav-buttons side="right">
-    <button menu-toggle="right"class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons> -->
-
-  <div class="bar bar-subheader bar-dark">
-    <h2 class="title">Dispose in {{item.correct_bin.colour}} bin</h2>
-    <img ng-src="img/bins/{{item.correct_bin.colour}}.png" alt="" height="44">
+  <div class="bar bar-subheader bar-rs-blue">
+    <!-- <h2 class="title">Dispose in {{item.correct_bin.colour}} bin</h2> -->
+    <h2 class="title">{{item.item.name}}</h2>
   </div>
 
   <ion-content class="has-subheader">
+    <div class="card correct-bin-card">
+      <div class="item item-text-wrap no-padding">
+        <div class="row no-padding">
+          <div class="col col-75 no-padding correct-bin-text">
+            Dispose in {{item.correct_bin.colour}} bin
+          </div>
+          <div class="col no-padding">
+            <img class="correct-bin-img" ng-src="img/bins/{{item.correct_bin.colour}}.png">
+          </div>
+        </div>
+
+      </div>
+    </div>
     <img class="full-image" ng-src="{{item.avatarUrl}}">
     <div class="padding">
 
@@ -21,15 +30,6 @@
           {{item.item.description}}
         </div>
       </div>
-
-      <!-- <div class="card">
-        <div class="item item-divider">
-          Note
-        </div>
-        <div class="item item-text-wrap text-left">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum nobis aut blanditiis eius quo earum id maiores reiciendis! Sunt rem ducimus error. Pariatur rem voluptatum, ipsum similique perspiciatis ex, repudiandae!
-        </div>
-      </div> -->
 
     </div>
   </ion-content>
