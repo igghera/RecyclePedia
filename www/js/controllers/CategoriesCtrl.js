@@ -1,6 +1,19 @@
 angular.module('recyclepedia.controllers')
 .controller('CategoriesCtrl', function($scope, ApiService, $location) {
-  $scope.categories = [];
+  $scope.categories = [
+    {id: 1, title: 'Automotive'},
+    {id: 2, title: 'Batteries'},
+    {id: 3, title: 'Chemicals'},
+    {id: 4, title: 'Constructions'},
+    {id: 5, title: 'Household'},
+    {id: 6, title: 'Electronics'},
+    {id: 7, title: 'Food'},
+    {id: 8, title: 'Garden'},
+    {id: 9, title: 'Glass'},
+    {id: 10, title: 'Metals'},
+    {id: 11, title: 'Paper and Cardboard'},
+    {id: 12, title: 'Plastics'}
+  ];
   $scope.items = [];
   $scope.search = {
     item: {
@@ -75,7 +88,7 @@ angular.module('recyclepedia.controllers')
     });
   };
 
-  $scope.gotoItemsList = function(category) {
+  $scope.gotoItemsList = function(index) {
     /**
     * document.activeElement returns the item on the page that has focus.
     * Here we check if the activeElement is the search field in the view, to avoid this unwanted behaviour:
@@ -85,6 +98,9 @@ angular.module('recyclepedia.controllers')
     * To avoid this, when user taps a category, we check if he did it to actually go to the category view or to just remove focus to the
     * search field and hide the keyboard.
     */
+
+    var category = $scope.categories[index - 1];
+
     if(!angular.element(document.activeElement).hasClass('js-searchField')) {
       $location.path('app/category/' + category.title + '/' + category.id);
     }
