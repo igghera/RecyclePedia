@@ -49,10 +49,10 @@
     </ul>
   </ion-content>
 
-  <ion-content scroll="false" class="has-subheader categoriesContainer" ng-show="search.item.name == ''">
+  <ion-content class="has-subheader categoriesContainer" ng-show="search.item.name == ''">
     <div class="row categories"
       ng-repeat="rows in categories | partition:3"
-      ng-class="{'first-row': $first, 'last-row': $last}"> <!-- ng-tyle='{height": tilesHeight}' -->
+      ng-class="{'first-row': $first, 'last-row': $last}"> <!-- ng-style='{height": tilesHeight}' -->
       <a class="col category"
          href=""
          ng-repeat="category in rows"
