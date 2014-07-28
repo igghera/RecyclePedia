@@ -56,9 +56,9 @@
       <a class="col category"
          href=""
          ng-repeat="category in rows"
-         ng-style='{"background-color": category.color}'
+         ng-style='{"background-color": category.color, "height": tilesHeight}'
          ng-click="gotoItemsList(category)"
-         ng-class="{'first': $first, 'last': $last}"> <!-- , "height": tilesHeight -->
+         ng-class="{'first': $first, 'last': $last}"> <!--  -->
 
         <span class="category-icon" ng-style="{'background-image': 'url(' + category.img + ')'}"></span>
 

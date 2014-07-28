@@ -1,7 +1,7 @@
 angular.module('recyclepedia.controllers')
 .controller('ItemCtrl', function($scope, ApiService) {
   $scope.item = ApiService.selectedItem;
-
+  debugger;
   $scope.showDescription = $scope.item.item.description.trim() != 'NO_DESCRIPTION';
 
   $scope.disposeInstructions = $scope.item.correct_bin.colour === 'no_bin' ?
