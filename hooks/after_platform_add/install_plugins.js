@@ -4,11 +4,12 @@
 
 // add your plugins to this list--either the identifier, the filesystem location or the URL
 var pluginlist = [
-    "org.apache.cordova.device",
-    "org.apache.cordova.device-motion",
-    "org.apache.cordova.device-orientation",
-    "org.apache.cordova.geolocation",
-    "https://github.com/chrisekelley/AppPreferences/"
+  "com.ionic.keyboard",
+  "org.apache.cordova.console",
+  "org.apache.cordova.device",
+  "org.apache.cordova.file",
+  "org.apache.cordova.file-transfer",
+  "org.apache.cordova.statusbar"
 ];
 
 // no need to configure below
