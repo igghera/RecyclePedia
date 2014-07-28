@@ -61,6 +61,7 @@
   width: 65px;
   height: 65px;
   display: inline-block;
+  background-size: 65px;
 }
 
 .material-icon {
@@ -247,6 +248,17 @@ img.logo-header {
 .correct-bin-text {
   line-height: 60px;
   font-size: 1.2em;
+}
+
+/* Item image */
+
+.item-image {
+  position: relative;
+  padding-bottom: 92.25%; /* square */
+  padding-top: 25px;
+  height: 0;
+  background-size: cover;
+  background-position: 50%;
 }
 
 /* iPad in portrait */

@@ -19,7 +19,9 @@
 
       </div>
     </div>
-    <img class="full-image" ng-src="{{item.avatarUrl}}">
+    <div class="item-image" ng-style="{'background-image': 'url(' + item.avatarUrl + ')'}">
+      <!-- <img ng-src="{{item.avatarUrl}}"> -->
+    </div>
     <div class="padding">
 
       <div class="card" ng-if="showDescription">

@@ -94,7 +94,7 @@ angular.module('recyclepedia.controllers')
     var i = 0;
 
     angular.forEach(response.data.response, function(c) {
-      c.img = 'img/category-icons/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
+      c.img = 'img/category-icons/130/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
       $scope.categories.push(c);
       i++;
     });

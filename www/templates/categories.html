@@ -52,13 +52,13 @@
   <ion-content class="has-subheader categoriesContainer" ng-show="search.item.name == ''">
     <div class="row categories"
       ng-repeat="rows in categories | partition:3"
-      ng-class="{'first-row': $first, 'last-row': $last}"> <!-- ng-style='{height": tilesHeight}' -->
+      ng-class="{'first-row': $first, 'last-row': $last}">
       <a class="col category"
          href=""
          ng-repeat="category in rows"
          ng-style='{"background-color": category.color, "height": tilesHeight}'
          ng-click="gotoItemsList(category)"
-         ng-class="{'first': $first, 'last': $last}"> <!--  -->
+         ng-class="{'first': $first, 'last': $last}">
 
         <span class="category-icon" ng-style="{'background-image': 'url(' + category.img + ')'}"></span>
 

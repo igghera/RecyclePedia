@@ -25,6 +25,8 @@
     -->
     <preference name="BackupWebStorage" value="none" />
 
+    <preference name="Orientation" value="portrait" />
+
     <access origin="*" />
 
     <feature name="StatusBar">

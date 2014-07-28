@@ -40,6 +40,7 @@ angular.module('recyclepedia.controllers')
   ApiService.getCouncils().then(function (response) {
     angular.forEach(response.data.response, function(council) {
       // If council is actually a configuration we hide if from list and put it in the footer
+
       if(council.name.indexOf('+') < 0) {
         council.logoUrl = 'http://recyclesmart.com.au' + council.logo.logo.url;
         $scope.councils.push(council);
