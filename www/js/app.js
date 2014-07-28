@@ -16,7 +16,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
-      // StatusBar.styleDefault();
+      StatusBar.styleDefault();
     }
 
     // console.log(window.ionic.Platform);
@@ -29,7 +29,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     // ImgCache.options.chromeQuota = 50*1024*1024;
 
     ImgCache.init(function(){
-      console.log('ImgCache init: success!');
+      // console.log('ImgCache init: success!');
 
       // from within this function you're now able to call other ImgCache methods
       // or you can wait for the ImgCacheReady event
@@ -39,7 +39,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
         $location.path('/app/categories');
       }
     }, function(){
-        console.log('ImgCache init: error! Check the log for errors');
+        // console.log('ImgCache init: error! Check the log for errors');
     });
   });
 })
