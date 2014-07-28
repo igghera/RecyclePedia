@@ -54,7 +54,6 @@ angular.module('recyclepedia.services', [])
       });
 
       var promise = request.then(function(response) {
-          console.log('Success baby');
           return(response);
         }, function(response) {
           return($q.reject( "Something went wrong"));
