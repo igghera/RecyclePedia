@@ -60,10 +60,6 @@
   vertical-align: middle;
 }
 
-.category img {
-  height: 65px;
-}
-
 .category.last {
   border: none;
 }
@@ -73,6 +69,12 @@
   height: 65px;
   display: inline-block;
   background-size: 65px;
+}
+
+.platform-ipad .category-icon {
+  width: 130px;
+  height: 130px;
+  background-size: 130px;
 }
 
 .material-icon {
@@ -191,37 +193,21 @@ img.logo-header {
 }
 
 .config.multi-stream-plus-green-bin {
-  /*background-image: url('../img/bin-configurations/configuration-1.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;*/
   border-right: 1px solid #626262;
   border-bottom: 1px solid #626262;
 }
 
 .config.commingled-no-green-bin {
-  /*background-image: url('../img/bin-configurations/configuration-2.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;*/
   border-left: 1px solid #626262;
   border-bottom: 1px solid #626262;
 }
 
 .config.multi-stream-no-green-bin {
-  /*background-image: url('../img/bin-configurations/configuration-3.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;*/
   border-right: 1px solid #626262;
   border-top: 1px solid #626262;
 }
 
 .config.commingled-plus-green-bin {
-  /*background-image: url('../img/bin-configurations/configuration-4.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;*/
   border-left: 1px solid #626262;
   border-top: 1px solid #626262;
 }
