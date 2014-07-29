@@ -4,7 +4,7 @@
 
 // add your plugins to this list--either the identifier, the filesystem location or the URL
 var pluginlist = [
-  "com.ionic.keyboard",
+  // "com.ionic.keyboard",
   "org.apache.cordova.console",
   "org.apache.cordova.device",
   "org.apache.cordova.file",
