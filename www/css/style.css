@@ -149,6 +149,8 @@ img.logo-header {
 .custom-search-icon {
   font-size: 22px;
   background-color: #e97a24;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   border-radius: 50%;
   color: #fff;
   width: 33px;
