@@ -22,6 +22,10 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     // console.log(window.ionic.Platform);
     // ionic.Platform.fullScreen(false, true);
 
+    if(!angular.isUndefined(window.localStorage['council'])) {
+      $location.path('/app/categories');
+    }
+
     // write log to console
     ImgCache.options.debug = true;
 
@@ -33,11 +37,6 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
       // from within this function you're now able to call other ImgCache methods
       // or you can wait for the ImgCacheReady event
-
-
-      if(!angular.isUndefined(window.localStorage['council'])) {
-        $location.path('/app/categories');
-      }
     }, function(){
         // console.log('ImgCache init: error! Check the log for errors');
     });
@@ -117,4 +116,3 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/councils');
 });
-
