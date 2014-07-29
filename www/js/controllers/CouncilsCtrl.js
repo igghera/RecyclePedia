@@ -27,7 +27,6 @@ angular.module('recyclepedia.controllers')
     $event.stopPropagation();
     var standardConfig = $scope.standardConfigs[index];
     window.localStorage['council'] = angular.toJson(standardConfig);
-    console.log(standardConfig);
 
     // Broadcast event to notify the menu that council has changed
     $rootScope.$broadcast('council-changed', standardConfig.name);
