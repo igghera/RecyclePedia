@@ -125,7 +125,7 @@
 
 /*Show spinner in search input during loading*/
 .js-searchField.isLoading {
-  background: url('http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif') no-repeat right center !important;
+  background: url('http://www.hsi.com.hk/HSI-Net/pages/images/en/share/ajax-loader.gif') no-repeat 97% center !important;
 }
 
 img.logo-header {
@@ -148,16 +148,26 @@ img.logo-header {
   padding: 3px;
 }
 
-.custom-search-icon {
-  font-size: 22px;
+.search-icon-wrapper {
   background-color: #e97a24;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  color: #fff;
   width: 33px;
   height: 30px;
   text-align: center;
+}
+
+.custom-search-icon {
+  font-size: 22px;
+  /*background-color: #e97a24;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;*/
+  color: #fff;
+  /*width: 33px;
+  height: 30px;
+  text-align: center;*/
 }
 
 .button.button-energized {

@@ -1,27 +1,12 @@
-<<!-- ion-view title="Our Awesome Header">
-      <ion-content>
-        Here's the content for this page
-      </ion-content>
-    </ion-view> -->
-
-<!-- <ion-header-bar class="bar-light" animation="slide-left-right-ios7">
-  <div class="buttons left-buttons"> </div>
-  <h1 class="title logo-header">
-    <img src="img/logo-header.png" alt="">
-  </h1>
-  <div class="buttons">
-    <button menu-toggle="right" class="button button-icon icon ion-navicon"></button>
-  </div>
-</ion-header-bar> -->
-
-
 <ion-view title='<img src="img/logo-header.png" class="logo-header">' hide-back-button="true">
 
   <!-- search input -->
 
   <div class="bar bar-subheader item-input-inset search-input-container">
     <label class="item-input-wrapper">
-      <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      <div class="search-icon-wrapper">
+        <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      </div>
       <input class="js-searchField"
         ng-class="{'isLoading': isLoading}"
         type="search"
