@@ -21,8 +21,10 @@ angular.module('recyclepedia.controllers')
     }
   };
 
-  var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-  $scope.tilesHeight = (viewportHeight - 103) / 4  + 'px';
+  $scope.resizeTiles = function() {
+    var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    $scope.tilesHeight = (viewportHeight - 103) / 4  + 'px';
+  };
 
   // Whether or not we are requesting data to the backend
   $scope.isLoading = false;

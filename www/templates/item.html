@@ -28,8 +28,7 @@
         <div class="item item-divider">
           Description
         </div>
-        <div class="item item-text-wrap text-left">
-          {{item.item.description}}
+        <div class="item item-text-wrap text-left" ng-bind-html="item.item.description">
         </div>
       </div>
 
@@ -37,8 +36,7 @@
         <div class="item item-divider">
           Comments
         </div>
-        <div class="item item-text-wrap text-left">
-          {{item.comments}}
+        <div class="item item-text-wrap text-left" ng-bind-html="item.comments">
         </div>
       </div>
 

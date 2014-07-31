@@ -15,4 +15,24 @@ angular.module('recyclepedia').directive('ngCache', function() {
       });
     }
   };
+})
+
+/**
+* Bind to 'resize' event on window object and react adjusting the UI to the new size (e.g. on keyboard show/hide)
+*/
+.directive('resizable', function($window) {
+  return function($scope) {
+    // On window resize => resize the app
+    $scope.initializeWindowSize = function() {
+      $scope.resizeTiles();
+    };
+
+    angular.element($window).bind('resize', function() {
+        $scope.initializeWindowSize();
+        $scope.$apply();
+    });
+
+    // Initiate the resize function default values
+    $scope.initializeWindowSize();
+  };
 });
