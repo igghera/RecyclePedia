@@ -7,12 +7,19 @@
 angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recyclepedia.services'])
 
 .run(function($ionicPlatform, $location) {
+  if(!angular.isUndefined(window.localStorage['council'])) {
+    $location.path('/app/categories');
+  }
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
+
+  // debugger;
+
+    // if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    // }
 
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -22,24 +29,20 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     // console.log(window.ionic.Platform);
     // ionic.Platform.fullScreen(false, true);
 
-    if(!angular.isUndefined(window.localStorage['council'])) {
-      $location.path('/app/categories');
-    }
-
     // write log to console
-    ImgCache.options.debug = true;
+    // ImgCache.options.debug = true;
 
     // increase allocated space on Chrome to 50MB, default was 10MB
     // ImgCache.options.chromeQuota = 50*1024*1024;
 
-    ImgCache.init(function(){
-      // console.log('ImgCache init: success!');
+    // ImgCache.init(function(){
+    //   // console.log('ImgCache init: success!');
 
-      // from within this function you're now able to call other ImgCache methods
-      // or you can wait for the ImgCacheReady event
-    }, function(){
-        // console.log('ImgCache init: error! Check the log for errors');
-    });
+    //   // from within this function you're now able to call other ImgCache methods
+    //   // or you can wait for the ImgCacheReady event
+    // }, function(){
+    //     // console.log('ImgCache init: error! Check the log for errors');
+    // });
   });
 })
 /*
