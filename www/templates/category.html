@@ -1,16 +1,12 @@
 <ion-view>
 
-  <!-- Right side nav menu button -->
-
-  <!-- <ion-nav-buttons side="right">
-    <button menu-toggle="right"class="button button-icon icon ion-navicon"></button>
-  </ion-nav-buttons> -->
-
   <!-- search input -->
 
   <div class="bar bar-subheader item-input-inset search-input-container">
     <label class="item-input-wrapper">
-      <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      <div class="search-icon-wrapper">
+        <i class="icon ion-search placeholder-icon custom-search-icon"></i>
+      </div>
       <input class="js-searchField"
         type="search"
         placeholder="What would you like to recycle?"
@@ -33,13 +29,6 @@
           <span>{{item.categoryList}}</span>
         </p>
       </li>
-
-      <!-- <li class="item item-button-right" ng-repeat="item in items | filter:search" ng-click="goToItemDetail(item)">
-        {{item.item.name}}
-        <button class="button button-positive">
-          <i class="icon ion-star"></i>
-        </button>
-      </li> -->
     </ul>
   </ion-content>
 </ion-view>
