@@ -14,6 +14,20 @@
       href="http://recyclesmart.com.au">
       RecycleSmart Pty Ltd
     </author>
+
+    <!-- Permissions -->
+
+    <!--
+      If you do not want any permissions to be added to your app, add the
+      following tag to your config.xml; you will still have the INTERNET
+      permission on your app, which PhoneGap requires.
+    -->
+    <preference name="permissions" value="none" />
+
+    <!-- to enable individual permissions use the following examples -->
+    <!-- <feature name="http://api.phonegap.com/1.0/file"/>
+    <feature name="http://api.phonegap.com/1.0/network"/> -->
+
     <content src="index.html" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />
@@ -54,18 +68,6 @@
       <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
     </feature> -->
 
-    <!-- Permissions -->
-
-    <!--
-      If you do not want any permissions to be added to your app, add the
-      following tag to your config.xml; you will still have the INTERNET
-      permission on your app, which PhoneGap requires.
-    -->
-    <preference name="permissions" value="none"/>
-
-    <!-- to enable individual permissions use the following examples -->
-    <!-- <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/network"/> -->
     <!-- Icons -->
 
     <!-- iPhone / iPod Touch  -->
