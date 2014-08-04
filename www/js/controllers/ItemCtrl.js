@@ -13,8 +13,4 @@ angular.module('recyclepedia.controllers')
     $scope.item.avatarUrl = 'http://www.recyclesmart.com.au' + $scope.item.item.avatar.avatar.big.url;
     // ImgCache.cacheFile($scope.item.avatarUrl);
   }
-
-  $scope.openLinkInExternalBrowser = function() {
-    navigator.app.loadUrl('https://google.com/', { openExternal:true });
-  };
 })

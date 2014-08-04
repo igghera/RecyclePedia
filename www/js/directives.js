@@ -35,4 +35,40 @@ angular.module('recyclepedia').directive('ngCache', function() {
     // Initiate the resize function default values
     $scope.initializeWindowSize();
   };
+})
+
+.directive('compile', ['$compile', function ($compile) {
+  return function(scope, element, attrs) {
+    scope.$watch(
+      function(scope) {
+        return scope.$eval(attrs.compile);
+      },
+      function(value) {
+        element.html(value);
+        $compile(element.contents())(scope);
+      }
+   )};
+}])
+
+// Override anchor tags (links) to open them in an external browser instead of the wrapper one
+.directive('a', function () {
+  return {
+    restrict: 'E',
+    link: function (scope, element, attrs) {
+      if ( !attrs.href ){
+        return;
+      }
+      var externalRe = new RegExp("^(http|https)://");
+      var url = attrs.href;
+
+      if(externalRe.test(url)) {
+        element.on('click',function(e) {
+          // Prevent regular links behaviour (that is, opening in wrapper browser)
+          e.preventDefault();
+          // And open them in native browser instead
+          window.open(encodeURI(url), '_system');
+        });
+      }
+    }
+  };
 });

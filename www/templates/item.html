@@ -28,16 +28,14 @@
         <div class="item item-divider">
           Description
         </div>
-        <div class="item item-text-wrap text-left" ng-bind-html="item.item.description">
-        </div>
+        <div class="item item-text-wrap text-left" compile="item.item.description"></div>
       </div>
 
       <div class="card" ng-if="item.comments">
         <div class="item item-divider">
-          <a href="" ng-click="openLinkInExternalBrowser()">Comments</a>
+          How to Recycle Smart?
         </div>
-        <div class="item item-text-wrap text-left" ng-bind-html="item.comments">
-        </div>
+        <div class="item item-text-wrap text-left" compile="item.comments"></div>
       </div>
 
     </div>

@@ -16,7 +16,8 @@ var pluginlist = [
   "com.ionic.keyboard",
   "org.apache.cordova.console",
   "org.apache.cordova.device",
-  "org.apache.cordova.statusbar"
+  "org.apache.cordova.statusbar",
+  "org.apache.cordova.inappbrowser"
 ];
 
 // No need to configure below
