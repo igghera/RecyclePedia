@@ -202,19 +202,21 @@ img.logo-header {
   bottom: 150px;
 }
 
+
+
 .config.multi-stream-plus-green-bin {
   border-right: 1px solid #626262;
   border-bottom: 1px solid #626262;
 }
 
 .config.commingled-no-green-bin {
-  border-left: 1px solid #626262;
-  border-bottom: 1px solid #626262;
+  border-right: 1px solid #626262;
+  border-top: 1px solid #626262;
 }
 
 .config.multi-stream-no-green-bin {
-  border-right: 1px solid #626262;
-  border-top: 1px solid #626262;
+  border-left: 1px solid #626262;
+  border-bottom: 1px solid #626262;
 }
 
 .config.commingled-plus-green-bin {
@@ -268,12 +270,4 @@ img.logo-header {
   height: 0;
   background-size: cover;
   background-position: 50%;
-}
-
-/* iPad in portrait */
-@media only screen
-and (min-device-width : 768px)
-and (max-device-width : 1024px)
-and (orientation : portrait) {
-
 }
