@@ -1,5 +1,5 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope, ApiService, $location) {
+.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope) {
   $scope.categories = [
     {id: 1, title: 'Automotive'},
     {id: 2, title: 'Batteries'},
@@ -21,9 +21,28 @@ angular.module('recyclepedia.controllers')
     }
   };
 
+  $scope.isFocusOnSearch = false;
+
+  $scope.focusOnSearch = function() {
+    $scope.isFocusOnSearch = true;
+  };
+
+  $scope.blurOnSearch = function() {
+    $scope.isFocusOnSearch = false;
+  };
+
+  $scope.shouldShowCategories = function() {
+    // return $scope.isFocusOnSearch;
+    return $scope.search.item.name != '';
+  };
+
   $scope.resizeTiles = function() {
-    var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    $scope.tilesHeight = (viewportHeight - 103) / 4  + 'px';
+    if(angular.isUndefined($rootScope.tilesHeight)) {
+      var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+      $rootScope.tilesHeight = (viewportHeight - 103) / 4  + 'px';
+    }
+
+    $scope.tilesHeight = $rootScope.tilesHeight;
   };
 
   // Whether or not we are requesting data to the backend
