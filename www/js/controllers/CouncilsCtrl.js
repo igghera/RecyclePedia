@@ -7,7 +7,7 @@
 * - a footer with 4 "standard" bins configurations
 */
 angular.module('recyclepedia.controllers')
-.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location, $ionicLoading, $ionicPopover, $timeout) {
+.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location, $ionicLoading, $ionicPopover, $timeout, $ionicPopup) {
   // Our 4 standard configurations (quite hard-coded)
   $scope.standardConfigs = [];
   // Display loading indicator
@@ -62,9 +62,7 @@ angular.module('recyclepedia.controllers')
   };
 
   $scope.openStep1 = function() {
-    $timeout(function() {
-      $scope.tutorialStep1.show(document.querySelector('.custom-search-icon'));
-    }, 500);
+    $scope.tutorialStep1.show(document.querySelector('.custom-search-icon'));
   };
 
   $scope.closeStep1 = function() {
@@ -90,6 +88,28 @@ angular.module('recyclepedia.controllers')
     window.localStorage.showTutorialCouncilView = false;
   };
 
+  $scope.welcomePopup;
+
+  $scope.openWelcomePopup = function() {
+    $scope.welcomePopup = $ionicPopup.show({
+      title: 'Welcome to RecyclePedia!',
+      subTitle: 'A quick tour to get you started',
+      template: '<p>Blhblahblah</p>',
+      scope: $scope,
+      buttons: [{
+        text: '<b>Let\'s go!</b>',
+        type: 'button-positive',
+        onTap: function(e) {
+          return;
+        }
+      }]
+    });
+
+    $scope.welcomePopup.then(function(res) {
+     $scope.openStep1();
+    });
+  };
+
   // Load tutorial popovers
   $ionicPopover.fromTemplateUrl('tutorial-step-1.html', {
     scope: $scope,
@@ -98,7 +118,6 @@ angular.module('recyclepedia.controllers')
     popoverPosition: 'bottom'
   }).then(function(popover) {
     $scope.tutorialStep1 = popover;
-    $scope.startTutorial();
   });
 
   $ionicPopover.fromTemplateUrl('tutorial-step-2.html', {
@@ -119,11 +138,12 @@ angular.module('recyclepedia.controllers')
     $scope.tutorialStep3 = popover;
   });
 
+  // Check localstorage for the flag to see whether the user has gone through the tutorial or not
   $scope.startTutorial = function() {
-    var showTutorialCouncilView = angular.fromJson(window.localStorage.showTutorialCouncilView);
+    var showTutorialCouncilView = window.localStorage.showTutorialCouncilView;
 
-    if(angular.isUndefined(showTutorialCouncilView) || showTutorialCouncilView === true) {
-      $scope.openStep1();
+    if(angular.isUndefined(showTutorialCouncilView) || showTutorialCouncilView == '' || showTutorialCouncilView == 'true') {
+      $scope.openWelcomePopup();
     }
   };
 
@@ -133,4 +153,9 @@ angular.module('recyclepedia.controllers')
     $scope.tutorialStep2.remove();
     $scope.tutorialStep3.remove();
   });
+
+  // Start tutorial after half a second
+  $timeout(function() {
+    $scope.startTutorial();
+  }, 500);
 });

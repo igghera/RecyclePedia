@@ -1,5 +1,5 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope) {
+.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout, $ionicPopover) {
   $scope.categories = [
     {id: 1, title: 'Automotive'},
     {id: 2, title: 'Batteries'},
@@ -136,4 +136,59 @@ angular.module('recyclepedia.controllers')
       i++;
     });
   });
+
+  // First popup that explains how categories (tiles) work
+  $scope.categoriesPopup;
+
+  $scope.openCategoriesPopup = function() {
+    $scope.categoriesPopup = $ionicPopup.show({
+      title: 'Categories view',
+      // subTitle: 'A quick tour to get you started',
+      template: '<p>Select one of the categories to access a list of materials</p>',
+      scope: $scope,
+      buttons: [{
+        text: 'Next',
+        type: 'button-positive',
+        onTap: function(e) {
+          return;
+        }
+      }]
+    });
+
+    $scope.categoriesPopup.then(function(res) {
+     $scope.openStep1();
+    });
+  };
+
+  // Load tutorial popover
+  $ionicPopover.fromTemplateUrl('tutorial-categories-step-1.html', {
+    scope: $scope,
+    animation: 'fade-in',
+    backdropClickToClose: false,
+    popoverPosition: 'bottom'
+  }).then(function(popover) {
+    $scope.tutorialStep1 = popover;
+  });
+
+  $scope.openStep1 = function() {
+    $scope.tutorialStep1.show(document.querySelector('.custom-search-icon'));
+  };
+
+  $scope.closeStep1 = function() {
+    $scope.tutorialStep1.hide();
+    window.localStorage.showTutorialCategoriesView = false;
+  };
+
+  $scope.startTutorial = function() {
+    var showTutorialCategoriesView = window.localStorage.showTutorialCategoriesView;
+
+    if(angular.isUndefined(showTutorialCategoriesView) || showTutorialCategoriesView == '' || showTutorialCategoriesView == 'true') {
+      $scope.openCategoriesPopup();
+    }
+  };
+
+  // Start tutorial after half a second
+  $timeout(function() {
+    $scope.startTutorial();
+  }, 500);
 })
