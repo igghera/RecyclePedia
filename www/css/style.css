@@ -271,3 +271,33 @@ img.logo-header {
   background-size: cover;
   background-position: 50%;
 }
+
+.walkthrough.step-1 {
+  height: 180px;
+}
+
+.walkthrough.step-2 {
+  height: 180px;
+}
+
+.walkthrough.step-3 {
+  height: 210px;
+}
+
+.popover {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.popover-footer {
+  padding: 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background-image: none;
+}
+
+.popover .scroll-content {
+  margin-bottom: 0;
+  padding: 8px 10px;
+}
+

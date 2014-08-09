@@ -65,3 +65,51 @@
       </div>
     </div>
 </ion-view>
+
+<script id="tutorial-step-1.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-1">
+    <ion-header-bar>
+      <h1 class="title">Council search</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      You can search if you want
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep1()">Next</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+
+<script id="tutorial-step-2.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-2" popover-position="top">
+    <ion-header-bar>
+      <h1 class="title">Bin configurations</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      If you cannot find your council in the list, just select one of these bins configuration
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep2()">Next</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+
+<script id="tutorial-step-3.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-3" popover-position="bottom">
+    <ion-header-bar>
+      <h1 class="title">Navigation</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      You can come back to this view at any time. Tapping this button activates the navigation menu: just select "Change council"
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep3()">End</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
