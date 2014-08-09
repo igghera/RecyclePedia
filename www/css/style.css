@@ -249,7 +249,7 @@ img.logo-header {
 }
 
 .correct-bin-card {
-  margin: 0 5px 5px;
+  margin: 0 5px 10px;
 }
 
 .correct-bin-img {
@@ -261,12 +261,16 @@ img.logo-header {
   font-size: 1.2em;
 }
 
+.card.no-margin {
+  margin-top: 0;
+}
+
 /* Item image */
 
 .item-image {
   position: relative;
-  padding-bottom: 92.25%; /* square */
-  padding-top: 25px;
+  padding-bottom: 70%;
+  /*padding-bottom: 92.25%;*/ /* square */
   height: 0;
   background-size: cover;
   background-position: 50%;
