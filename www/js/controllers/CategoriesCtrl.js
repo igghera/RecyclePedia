@@ -77,6 +77,7 @@ angular.module('recyclepedia.controllers')
     $scope.abortRequest();
 
     if($scope.search.item.name === '') {
+      $scope.isLoading = false;
       return;
     }
 
