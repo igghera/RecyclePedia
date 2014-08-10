@@ -28,6 +28,11 @@ angular.module('recyclepedia.controllers')
 
     // Broadcast event to notify the menu that council has changed
     $rootScope.$broadcast('council-changed', council.name);
+
+    if(typeof analytics !== "undefined") {
+      analytics.trackEvent('Council', 'Selection', council.name);
+    }
+
     $location.path('/app/categories');
   };
   // When user clicks on a standard configuration, we save in localStorage and proceed to categories view
@@ -38,6 +43,11 @@ angular.module('recyclepedia.controllers')
 
     // Broadcast event to notify the menu that council has changed
     $rootScope.$broadcast('council-changed', standardConfig.name);
+
+    if(typeof analytics !== "undefined") {
+      analytics.trackEvent('Standard configuration', 'Selection', standardConfig.name);
+    }
+
     $location.path('/app/categories');
   };
   /**
@@ -52,10 +62,12 @@ angular.module('recyclepedia.controllers')
       } else {
         $scope.standardConfigs.push(council);
       }
+
       // Hide loading view
       $ionicLoading.hide();
     });
   });
+
   // Fired when user taps the CANCEL button next to the search field
   $scope.clearSearchField = function() {
     $scope.search.council.name = '';
@@ -158,4 +170,8 @@ angular.module('recyclepedia.controllers')
   $timeout(function() {
     $scope.startTutorial();
   }, 500);
+
+  if(typeof analytics !== "undefined") {
+    analytics.trackView("Councils view");
+  }
 });

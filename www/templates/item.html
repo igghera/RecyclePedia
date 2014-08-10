@@ -24,14 +24,14 @@
     </div>
     <div class="padding">
 
-      <div class="card no-margin" ng-if="showDescription">
+      <div class="card no-margin item-description" ng-if="showDescription">
         <div class="item item-divider">
           Description
         </div>
         <div class="item item-text-wrap text-left" compile="item.item.description"></div>
       </div>
 
-      <div class="card no-margin" ng-if="item.comments">
+      <div class="card no-margin item-comments" ng-if="item.comments">
         <div class="item item-divider">
           How to Recycle Smart?
         </div>
@@ -41,3 +41,51 @@
     </div>
   </ion-content>
 </ion-view>
+
+<script id="tutorial-item-step-1.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-1" popover-position="bottom">
+    <ion-header-bar>
+      <h1 class="title">Disposal information</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      Here is where you can dispose of this item
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep1()">Ok</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+
+<script id="tutorial-item-step-2.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-2" popover-position="top">
+    <ion-header-bar>
+      <h1 class="title">Item description</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      Blablah
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep2()">Ok</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>
+
+<script id="tutorial-item-step-3.html" type="text/ng-template">
+  <ion-popover-view class="walkthrough step-3" popover-position="top">
+    <ion-header-bar>
+      <h1 class="title">Tips and tricks</h1>
+    </ion-header-bar>
+    <ion-content scroll="false" class="popover-content">
+      Blahblahba
+    </ion-content>
+    <div class="bar bar-footer popover-footer">
+      <div class="button-bar">
+        <button class="button button-clear button-positive" ng-click="closeStep3()">Ok</button>
+      </div>
+    </div>
+  </ion-popover-view>
+</script>

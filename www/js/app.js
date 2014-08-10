@@ -12,22 +12,20 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
   }
 
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-
-  // debugger;
-
-    // if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
-    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    // }
-
+    // Hide the accessory bar by default on iOS - com.ionic.keyboard required
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    // Style status bar in iOS7 - org.apache.cordova.statusbar required
     if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
 
-    // console.log(window.ionic.Platform);
-    // ionic.Platform.fullScreen(false, true);
+    if(typeof analytics !== "undefined") {
+      analytics.startTrackerWithId("UA-39582079-4");
+    } else {
+      console.log("Google Analytics Unavailable");
+    }
 
     // write log to console
     // ImgCache.options.debug = true;

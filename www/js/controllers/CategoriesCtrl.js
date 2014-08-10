@@ -106,6 +106,10 @@ angular.module('recyclepedia.controllers')
       });
 
       $scope.items = items;
+
+      if(typeof analytics !== "undefined") {
+        analytics.trackEvent('Search', 'Query', searchString);
+      }
     });
   };
 
@@ -123,6 +127,10 @@ angular.module('recyclepedia.controllers')
     var category = $scope.categories[index - 1];
 
     if(!angular.element(document.activeElement).hasClass('js-searchField')) {
+      if(typeof analytics !== "undefined") {
+        analytics.trackEvent('Category', 'click', category.title);
+      }
+
       $location.path('app/category/' + category.title + '/' + category.id);
     }
   };
@@ -191,4 +199,8 @@ angular.module('recyclepedia.controllers')
   $timeout(function() {
     $scope.startTutorial();
   }, 500);
+
+  if(typeof analytics !== "undefined") {
+    analytics.trackView("Categories view");
+  }
 })

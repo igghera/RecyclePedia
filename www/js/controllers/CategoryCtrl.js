@@ -40,10 +40,19 @@ angular.module('recyclepedia.controllers')
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
+
+    if(typeof analytics !== "undefined") {
+      analytics.trackEvent('Item', 'click', item.item.name);
+    }
+
     $location.path('app/item/');
   };
 
   $scope.clearSearchField = function() {
     $scope.search.item.name = '';
   };
+
+  if(typeof analytics !== "undefined") {
+    analytics.trackView("Category view");
+  }
 })
