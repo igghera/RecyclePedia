@@ -18,7 +18,8 @@ var pluginlist = [
   "org.apache.cordova.device",
   "org.apache.cordova.statusbar",
   "org.apache.cordova.inappbrowser",
-  "https://github.com/danwilson/google-analytics-plugin.git"
+  "https://github.com/danwilson/google-analytics-plugin.git",
+  "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git"
 ];
 
 // No need to configure below

@@ -15,6 +15,10 @@
       RecycleSmart Pty Ltd
     </author>
 
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.NetworkManager" />
+    </feature>
+
     <preference name="Permissions" value="none" />
     <preference name="fullscreen" value="false" />
     <preference name="webviewbounce" value="false" />

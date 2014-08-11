@@ -30,17 +30,32 @@ var filestocopy = [
   {"config/android/drawable-xhdpi/splash.png": "platforms/android/res/drawable-xhdpi/splash.png"},
 
   // iOS - icons
-  {"config/ios/Resources/icons/icon-72.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72.png"},
-  {"config/ios/Resources/icons/icon.png": "platforms/ios/RecyclePedia/Resources/icons/icon.png"},
-  {"config/ios/Resources/icons/icon@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon@2x.png"},
-  {"config/ios/Resources/icons/icon-72@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72@2x.png"},
+  {"config/ios/Icon-72.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72.png"},
+  {"config/ios/Icon.png": "platforms/ios/RecyclePedia/Resources/icons/icon.png"},
+  {"config/ios/Icon@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon@2x.png"},
+  {"config/ios/Icon-72@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72@2x.png"},
 
   // iOS - splashscreens
   {"config/ios/Resources/splash/Default@2x~iphone.png": "platforms/ios/RecyclePedia/Resources/splash/Default@2x~iphone.png"},
   {"config/ios/Resources/splash/Default-568h@2x~iphone.png": "platforms/ios/RecyclePedia/Resources/splash/Default-568h@2x~iphone.png"},
   {"config/ios/Resources/splash/Default~iphone.png": "platforms/ios/RecyclePedia/Resources/splash/Default~iphone.png"},
   {"config/ios/Resources/splash/Default-Portrait~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Portrait~ipad.png"},
-  {"config/ios/Resources/splash/Default-Portrait@2x~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Portrait@2x~ipad.png"}
+  {"config/ios/Resources/splash/Default-Portrait@2x~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Portrait@2x~ipad.png"},
+
+  // iOS7 - icons
+  {"config/ios7/Icon.png": "platforms/ios/RecyclePedia/Resources/icons/icon.png"},
+  {"config/ios7/Icon@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon@2x.png"},
+  {"config/ios7/Icon-60@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-60@2x.png"},
+  {"config/ios7/Icon-72.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72.png"},
+  {"config/ios7/Icon-72@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72@2x.png"},
+  {"config/ios7/Icon-76.png": "platforms/ios/RecyclePedia/Resources/icons/icon-76.png"},
+  {"config/ios7/Icon-76@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-76@2x.png"},
+  {"config/ios7/Icon-Small.png": "platforms/ios/RecyclePedia/Resources/icons/icon-Small.png"},
+  {"config/ios7/Icon-Small@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-Small@2x.png"},
+  {"config/ios7/Icon-40.png": "platforms/ios/RecyclePedia/Resources/icons/icon-40.png"},
+  {"config/ios7/Icon-40@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-40@2x.png"},
+  {"config/ios7/Icon-50.png": "platforms/ios/RecyclePedia/Resources/icons/icon-50.png"},
+  {"config/ios7/Icon-50@2x.png": "platforms/ios/RecyclePedia/Resources/icons/icon-50@2x.png"}
 ];
 
 console.log("\n- AFTER-PREPARE HOOK >>> Copying icons and splash screens for each platform                                       \n".inverse);
