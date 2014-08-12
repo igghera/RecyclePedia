@@ -32,7 +32,24 @@ angular.module('recyclepedia.services', [])
     };
 
     factory.getCouncils = function() {
-      return $http.get(apiUrl + '/api/2/councils');
+      var cachedCouncils = angular.fromJson(window.localStorage.councils);
+
+      if(angular.isUndefined(cachedCouncils)) {
+        console.log('loading councils from api');
+
+        var promise = $http.get(apiUrl + '/api/2/councils').then(function(response) {
+          window.localStorage.councils = angular.toJson(response.data.response);
+        });
+
+        return promise;
+      } else {
+        console.error('Using cached councils');
+        return $q.when({
+          data: {
+            response: cachedCouncils
+          }
+        });
+      }
     };
 
     factory.getItemsForCategory = function(categoryId) {

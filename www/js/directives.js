@@ -5,9 +5,11 @@ angular.module('recyclepedia').directive('ngCache', function() {
       attrs.$observe('ngSrc', function(src) {
         ImgCache.isCached(src, function(path, success) {
           if (success) {
+            console.error('### USING CACHED FILE!!!!!');
             ImgCache.useCachedFile(el);
           } else {
             ImgCache.cacheFile(src, function() {
+              console.log('### Caching file');
               ImgCache.useCachedFile(el);
             });
           }
@@ -69,6 +71,21 @@ angular.module('recyclepedia').directive('ngCache', function() {
           window.open(encodeURI(url), '_system');
         });
       }
+    }
+  };
+})
+// Used in item view to center the big image. We use this instead of a CSS background image
+// (with background-position used to center) because we have to cache the image and imgCache needs
+.directive('verticalCenter', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, element) {
+      // When image is loaded we calculate real dimentions
+      element.bind('load' , function(e) {
+        var marginTop =  - element[0].offsetHeight / 2;
+        // And we move it up by half its height to center it (combined with CSS top property set to 50%)
+        element[0].style.marginTop = marginTop + 'px';
+      });
     }
   };
 });

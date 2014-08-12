@@ -16,6 +16,8 @@ var pluginlist = [
   "com.ionic.keyboard",
   "org.apache.cordova.console",
   "org.apache.cordova.device",
+  "org.apache.cordova.file",
+  "org.apache.cordova.file-transfer",
   "org.apache.cordova.statusbar",
   "org.apache.cordova.inappbrowser",
   "https://github.com/danwilson/google-analytics-plugin.git",

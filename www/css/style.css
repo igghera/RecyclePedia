@@ -267,7 +267,8 @@ img.logo-header {
 
 /* Item image */
 
-.item-image {
+.item-image-container {
+  overflow: hidden;
   position: relative;
   padding-bottom: 70%;
   /*padding-bottom: 92.25%;*/ /* square */
@@ -277,8 +278,15 @@ img.logo-header {
   transition: opacity linear 300ms;
 }
 
+.item-image {
+  top: 50%;
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
  /*Make item image appear only when page transition is over, so it doesn't affect ui performance */
-.ng-enter .item-image {
+.ng-enter .item-image-container {
   opacity: 0;
 }
 

@@ -16,11 +16,10 @@
             <img class="correct-bin-img" ng-src="img/bins/{{item.correct_bin.colour}}.png">
           </div>
         </div>
-
       </div>
     </div>
-    <div class="item-image" ng-style="{'background-image': 'url(' + item.avatarUrl + ')'}">
-      <!-- <img ng-src="{{item.avatarUrl}}"> -->
+    <div class="item-image-container"> <!-- ng-style="{'background-image': 'url(' + item.avatarUrl + ')'}" -->
+      <img class="item-image" ng-src="{{item.avatarUrl}}" vertical-center ng-cache>
     </div>
     <div class="padding">
 

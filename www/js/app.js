@@ -28,19 +28,19 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
     }
 
     // write log to console
-    // ImgCache.options.debug = true;
+    ImgCache.options.debug = true;
 
     // increase allocated space on Chrome to 50MB, default was 10MB
-    // ImgCache.options.chromeQuota = 50*1024*1024;
+    ImgCache.options.chromeQuota = 50*1024*1024;
 
-    // ImgCache.init(function(){
-    //   // console.log('ImgCache init: success!');
+    ImgCache.init(function() {
+      console.log('ImgCache init: success!');
 
-    //   // from within this function you're now able to call other ImgCache methods
-    //   // or you can wait for the ImgCacheReady event
-    // }, function(){
-    //     // console.log('ImgCache init: error! Check the log for errors');
-    // });
+      // from within this function you're now able to call other ImgCache methods
+      // or you can wait for the ImgCacheReady event
+    }, function(){
+        console.log('ImgCache init: error! Check the log for errors');
+    });
   });
 })
 /*
