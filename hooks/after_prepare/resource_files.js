@@ -16,18 +16,27 @@ var rootdir = process.argv[2];
 // List of assets to copy: {source: destination}
 var filestocopy = [
   // Android - icons
-  {"config/android/drawable/icon.png": "platforms/android/res/drawable/icon.png"},
-  {"config/android/drawable-hdpi/icon.png": "platforms/android/res/drawable-hdpi/icon.png"},
-  {"config/android/drawable-ldpi/icon.png": "platforms/android/res/drawable-ldpi/icon.png"},
-  {"config/android/drawable-mdpi/icon.png": "platforms/android/res/drawable-mdpi/icon.png"},
-  {"config/android/drawable-xhdpi/icon.png": "platforms/android/res/drawable-xhdpi/icon.png"},
+  {"config/icons/android/drawable/icon.png": "platforms/android/res/drawable/icon.png"},
+  {"config/icons/android/drawable-hdpi/icon.png": "platforms/android/res/drawable-hdpi/icon.png"},
+  {"config/icons/android/drawable-ldpi/icon.png": "platforms/android/res/drawable-ldpi/icon.png"},
+  {"config/icons/android/drawable-mdpi/icon.png": "platforms/android/res/drawable-mdpi/icon.png"},
+  {"config/icons/android/drawable-xhdpi/icon.png": "platforms/android/res/drawable-xhdpi/icon.png"},
+  {"config/icons/android/drawable-xhdpi/icon.png": "platforms/android/res/drawable/icon.png"},
 
-  // Android - splashscreens
-  {"config/android/drawable/splash.png": "platforms/android/res/drawable/splash.png"},
-  {"config/android/drawable-hdpi/splash.png": "platforms/android/res/drawable-hdpi/splash.png"},
-  {"config/android/drawable-ldpi/splash.png": "platforms/android/res/drawable-ldpi/splash.png"},
-  {"config/android/drawable-mdpi/splash.png": "platforms/android/res/drawable-mdpi/splash.png"},
-  {"config/android/drawable-xhdpi/splash.png": "platforms/android/res/drawable-xhdpi/splash.png"},
+  // Android - splashscreens (apparently Android doesn't have splash screens so we can get rid of this)
+  // {"config/launch screens/android/drawable-land-hdpi/screen.png": "platforms/android/res/drawable-land-hdpi/screen.png"},
+  // {"config/launch screens/android/drawable-land-ldpi/screen.png": "platforms/android/res/drawable-land-ldpi/screen.png"},
+  // {"config/launch screens/android/drawable-land-mdpi/screen.png": "platforms/android/res/drawable-land-mdpi/screen.png"},
+  // {"config/launch screens/android/drawable-land-xhdpi/screen.png": "platforms/android/res/drawable-land-xhdpi/screen.png"},
+  // {"config/launch screens/android/drawable-land-xxhdpi/screen.png": "platforms/android/res/drawable-land-xxhdpi/screen.png"},
+  // {"config/launch screens/android/drawable-land-xxxhdpi/screen.png": "platforms/android/res/drawable-land-xxxhdpi/screen.png"},
+
+  // {"config/launch screens/android/drawable-port-hdpi/screen.png": "platforms/android/res/drawable-port-hdpi/screen.png"},
+  // {"config/launch screens/android/drawable-port-ldpi/screen.png": "platforms/android/res/drawable-port-ldpi/screen.png"},
+  // {"config/launch screens/android/drawable-port-mdpi/screen.png": "platforms/android/res/drawable-port-mdpi/screen.png"},
+  // {"config/launch screens/android/drawable-port-xhdpi/screen.png": "platforms/android/res/drawable-port-xhdpi/screen.png"},
+  // {"config/launch screens/android/drawable-port-xxhdpi/screen.png": "platforms/android/res/drawable-port-xxhdpi/screen.png"},
+  // {"config/launch screens/android/drawable-port-xxxhdpi/screen.png": "platforms/android/res/drawable-port-xxxhdpi/screen.png"},
 
   // iOS - icons
   {"config/icons/ios/Icon-72.png": "platforms/ios/RecyclePedia/Resources/icons/icon-72.png"},
@@ -41,13 +50,8 @@ var filestocopy = [
   {"config/launch screens/ios/Default~iphone.png": "platforms/ios/RecyclePedia/Resources/splash/Default~iphone.png"},
   {"config/launch screens/ios/Default-Portrait~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Portrait~ipad.png"},
   {"config/launch screens/ios/Default-Portrait@2x~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Portrait@2x~ipad.png"},
-
   {"config/launch screens/ios/Default-Landscape~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Landscape~ipad.png"},
   {"config/launch screens/ios/Default-Landscape@2x~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-Landscape@2x~ipad.png"},
-
-
-  // not working
-  {"config/launch screens/ios/Default-1024h@2x~ipad.png": "platforms/ios/RecyclePedia/Resources/splash/Default-1024h@2x~ipad.png"},
 
   // iOS7 - icons
   {"config/icons/ios7/Icon.png": "platforms/ios/RecyclePedia/Resources/icons/icon.png"},
@@ -76,8 +80,14 @@ filestocopy.forEach(function(obj) {
 
     console.log((">>> Copying "+ srcfile +" to "+ destfile).green);
 
-    if (fs.existsSync(srcfile) && fs.existsSync(destdir)) {
-      fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+    if (fs.existsSync(srcfile)) {
+      if(fs.existsSync(destdir)) {
+        fs.createReadStream(srcfile).pipe(fs.createWriteStream(destfile));
+      } else {
+        console.log((">>> Error: destination file "+ destfile +" does not exist").red);
+      }
+    } else {
+      console.log((">>> Error: source file "+ srcfile +" does not exist").red);
     }
   });
 });
