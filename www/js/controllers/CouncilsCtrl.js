@@ -39,6 +39,9 @@ angular.module('recyclepedia.controllers')
   $scope.saveStandardConfig = function(index, $event) {
     $event.stopPropagation();
     var standardConfig = $scope.standardConfigs[index];
+
+    console.log('Selecting', standardConfig.name);
+
     window.localStorage['council'] = angular.toJson(standardConfig);
 
     // Broadcast event to notify the menu that council has changed
@@ -48,7 +51,7 @@ angular.module('recyclepedia.controllers')
       analytics.trackEvent('Standard configuration', 'Selection', standardConfig.name);
     }
 
-    $location.path('/app/categories');
+    // $location.path('/app/categories');
   };
   /**
   * Load list of councils from API
@@ -66,6 +69,8 @@ angular.module('recyclepedia.controllers')
       // Hide loading view
       $ionicLoading.hide();
     });
+
+    console.dir($scope.standardConfigs);
   });
 
   // Fired when user taps the CANCEL button next to the search field
