@@ -20,15 +20,22 @@
   <!-- View content (list of items) -->
 
   <ion-content class="has-subheader">
-    <ul class="list">
-      <li class="item item-avatar" ng-repeat="item in items | filter:search.item.name" ng-click="goToItemDetail(item)">
-        <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
-        <h2>{{item.item.name}}</h2>
-        <p>
-          in
-          <span>{{item.categoryList}}</span>
-        </p>
-      </li>
-    </ul>
+
+        <ion-list class="list" >
+          <div class="item item-avatar"
+            collection-repeat="item in items"
+            collection-item-width="'100%'"
+            collection-item-height="77"
+            ng-style="{height: 77, right: 0, left: 0}"
+            ng-click="goToItemDetail(item)">
+            <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
+            <h2>{{item.item.name}}</h2>
+            <p>
+              in
+              <span>{{item.categoryList}}</span>
+            </p>
+          </div>
+        </ion-list>
+
   </ion-content>
 </ion-view>

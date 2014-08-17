@@ -153,7 +153,7 @@ angular.module('recyclepedia.controllers')
     $scope.categoriesPopup = $ionicPopup.show({
       title: 'Categories view',
       // subTitle: 'A quick tour to get you started',
-      template: '<p>Select one of the categories to access a list of materials</p>',
+      template: '<p>Search for items by material. Select one of the following categories to find out which bin your item belongs to. </p>',
       scope: $scope,
       buttons: [{
         text: 'Next',

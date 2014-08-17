@@ -106,7 +106,9 @@ angular.module('recyclepedia.controllers')
     $scope.welcomePopup = $ionicPopup.show({
       title: 'Welcome to RecyclePedia!',
       subTitle: 'A quick tour to get you started',
-      template: '<p>Blhblahblah</p>',
+      template: '<p>This app will help you quickly and easily sort over 170 everyday household items. Use this app '
+        + 'to search for those items you’re unsure '
+        + 'how to dispose of and learn some interesting facts along the way. </p>',
       scope: $scope,
       buttons: [{
         text: '<b>Let\'s go!</b>',

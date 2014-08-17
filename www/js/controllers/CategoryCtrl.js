@@ -1,3 +1,6 @@
+/**
+* Controller for Category view.
+*/
 angular.module('recyclepedia.controllers')
 .controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService, $ionicLoading) {
   $scope.categoryName = $stateParams.categoryName;

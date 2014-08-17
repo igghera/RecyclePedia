@@ -1,7 +1,6 @@
 <ion-view>
 
   <div class="bar bar-subheader bar-rs-blue">
-    <!-- <h2 class="title">Dispose in {{item.correct_bin.colour}} bin</h2> -->
     <h2 class="title">{{item.item.name}}</h2>
   </div>
 
@@ -40,51 +39,3 @@
     </div>
   </ion-content>
 </ion-view>
-
-<script id="tutorial-item-step-1.html" type="text/ng-template">
-  <ion-popover-view class="walkthrough step-1" popover-position="bottom">
-    <ion-header-bar>
-      <h1 class="title">Disposal information</h1>
-    </ion-header-bar>
-    <ion-content scroll="false" class="popover-content">
-      Here is where you can dispose of this item
-    </ion-content>
-    <div class="bar bar-footer popover-footer">
-      <div class="button-bar">
-        <button class="button button-clear button-positive" ng-click="closeStep1()">Ok</button>
-      </div>
-    </div>
-  </ion-popover-view>
-</script>
-
-<script id="tutorial-item-step-2.html" type="text/ng-template">
-  <ion-popover-view class="walkthrough step-2" popover-position="top">
-    <ion-header-bar>
-      <h1 class="title">Item description</h1>
-    </ion-header-bar>
-    <ion-content scroll="false" class="popover-content">
-      Blablah
-    </ion-content>
-    <div class="bar bar-footer popover-footer">
-      <div class="button-bar">
-        <button class="button button-clear button-positive" ng-click="closeStep2()">Ok</button>
-      </div>
-    </div>
-  </ion-popover-view>
-</script>
-
-<script id="tutorial-item-step-3.html" type="text/ng-template">
-  <ion-popover-view class="walkthrough step-3" popover-position="top">
-    <ion-header-bar>
-      <h1 class="title">Tips and tricks</h1>
-    </ion-header-bar>
-    <ion-content scroll="false" class="popover-content">
-      Blahblahba
-    </ion-content>
-    <div class="bar bar-footer popover-footer">
-      <div class="button-bar">
-        <button class="button button-clear button-positive" ng-click="closeStep3()">Ok</button>
-      </div>
-    </div>
-  </ion-popover-view>
-</script>
