@@ -8,7 +8,7 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
 .run(function($ionicPlatform, $location) {
   if(!angular.isUndefined(window.localStorage['council'])) {
-    $location.path('/app/categories');
+    $location.path('/app/categories/');
   }
 
   $ionicPlatform.ready(function() {
@@ -64,22 +64,24 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
       controller: 'AppCtrl'
     })
 
-    .state('app.search', {
-      url: "/search",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/search.html",
-          controller: 'SearchCtrl'
-        }
-      }
-    })
+    // .state('app.categories', {
+    //   url: "/categories",
+    //   views: {
+    //     'menuContent' :{
+    //       templateUrl: "templates/categories.html",
+    //       controller: 'CategoriesCtrl',
+    //       reloadOnSearch: false
+    //     }
+    //   }
+    // })
 
-    .state('app.categories', {
-      url: "/categories",
+    .state('app.categoriesQuery', {
+      url: "/categories/:query",
       views: {
         'menuContent' :{
           templateUrl: "templates/categories.html",
-          controller: 'CategoriesCtrl'
+          controller: 'CategoriesCtrl',
+          reloadOnSearch: false
         }
       }
     })

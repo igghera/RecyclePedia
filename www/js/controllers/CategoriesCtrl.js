@@ -1,5 +1,5 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout, $ionicPopover) {
+.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout, $ionicPopover, $stateParams) {
   $scope.categories = [
     {id: 1, title: 'Automotive'},
     {id: 2, title: 'Batteries'},
@@ -14,6 +14,7 @@ angular.module('recyclepedia.controllers')
     {id: 11, title: 'Paper and Cardboard'},
     {id: 12, title: 'Plastics'}
   ];
+
   $scope.items = [];
   $scope.search = {
     item: {
@@ -21,19 +22,8 @@ angular.module('recyclepedia.controllers')
     }
   };
 
-  $scope.isFocusOnSearch = false;
-
-  $scope.focusOnSearch = function() {
-    $scope.isFocusOnSearch = true;
-  };
-
-  $scope.blurOnSearch = function() {
-    $scope.isFocusOnSearch = false;
-  };
-
   $scope.shouldShowCategories = function() {
-    // return $scope.isFocusOnSearch;
-    return $scope.search.item.name != '';
+    return $scope.search.item.name === '';
   };
 
   $scope.resizeTiles = function() {

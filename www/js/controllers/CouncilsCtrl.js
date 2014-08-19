@@ -33,7 +33,7 @@ angular.module('recyclepedia.controllers')
       analytics.trackEvent('Council', 'Selection', council.name);
     }
 
-    $location.path('/app/categories');
+    $location.path('/app/categories/');
   };
   // When user clicks on a standard configuration, we save in localStorage and proceed to categories view
   $scope.saveStandardConfig = function(index, $event) {
@@ -51,7 +51,7 @@ angular.module('recyclepedia.controllers')
       analytics.trackEvent('Standard configuration', 'Selection', standardConfig.name);
     }
 
-    // $location.path('/app/categories');
+    $location.path('/app/categories/');
   };
   /**
   * Load list of councils from API
