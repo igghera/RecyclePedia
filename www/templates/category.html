@@ -19,14 +19,11 @@
 
   <!-- View content (list of items) -->
 
-  <ion-content class="has-subheader">
+  <ion-content class="has-subheader" overflow-scroll="true">
 
         <ion-list class="list" >
           <div class="item item-avatar"
-            collection-repeat="item in items"
-            collection-item-width="'100%'"
-            collection-item-height="77"
-            ng-style="{height: 77, right: 0, left: 0}"
+            ng-repeat="item in items"
             ng-click="goToItemDetail(item)">
             <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
             <h2>{{item.item.name}}</h2>
