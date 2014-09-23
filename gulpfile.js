@@ -62,7 +62,7 @@ gulp.task('build-all-platforms', function() {
     // Then build Android app
     console.log('>>> Running "ionic build android"', '(--release???!)'.red);
 
-    sh.exec('ionic build android', {async: true, silent: true}, function(code, output) {
+    sh.exec('cordova build --release android', {async: true, silent: true}, function(code, output) {
       console.log('>>> '.green, 'Android build was successful (code: '+ code +')');
       // Finally build ios app
       console.log('>>> Running "ionic build ios"', '(--release???!)'.red);
