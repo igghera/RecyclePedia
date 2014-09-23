@@ -1,7 +1,17 @@
-RecycleSmartPedia
+RecyclePedia
 =================
 
 A mobile app built with Ionic framework to demonstrate the power of web technologies against native
+
+## Certificates and distribution
+
+In the `deploy` folder you can find all the keys and certificates you need:
+
+### Android
+Use `distribution.keystore`, password is 'android'
+
+### iOS
+
 
 ## Using this project
 

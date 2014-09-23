@@ -14,14 +14,14 @@ var rootdir = process.argv[2];
 // add your plugins to this list--either the identifier, the filesystem location or the URL
 var pluginlist = [
   "com.ionic.keyboard",
-  "org.apache.cordova.console",
+  // "org.apache.cordova.console",
   "org.apache.cordova.device",
   "org.apache.cordova.file",
   "org.apache.cordova.file-transfer",
   "org.apache.cordova.statusbar",
   "org.apache.cordova.inappbrowser",
-  "https://github.com/danwilson/google-analytics-plugin.git",
-  "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git"
+  "https://github.com/danwilson/google-analytics-plugin.git"
+  // "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git"
 ];
 
 // No need to configure below
