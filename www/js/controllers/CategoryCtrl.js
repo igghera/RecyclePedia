@@ -2,7 +2,7 @@
 * Controller for Category view.
 */
 angular.module('recyclepedia.controllers')
-.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService, $ionicLoading) {
+.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService, $ionicLoading, $timeout) {
   $scope.categoryName = $stateParams.categoryName;
   $scope.categoryId = $stateParams.categoryId;
   // Model for search input
@@ -12,14 +12,23 @@ angular.module('recyclepedia.controllers')
     }
   };
 
-  // Display loading indicator
-  $ionicLoading.show({
-    template: 'Loading...'
-  });
-
   $scope.items = [];
 
+  var showLoadingView = true;
+
+  $timeout(function(){
+    if(showLoadingView === true) {
+      // Display loading indicator
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+    }
+  }, 300);
+
   ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
+    // Don't show loading view after this
+    showLoadingView = false;
+    // If loading view is visible, hide it
     $ionicLoading.hide();
     var items = response.data.response;
 

@@ -29,11 +29,18 @@
         <div class="item item-text-wrap text-left" compile="item.item.description"></div>
       </div>
 
-      <div class="card no-margin item-comments" ng-if="item.comments">
+      <div class="card no-margin item-comments" ng-if="showComments">
         <div class="item item-divider">
           How to Recycle Smart?
         </div>
         <div class="item item-text-wrap text-left" compile="item.comments"></div>
+      </div>
+
+      <div class="card no-margin item-facts" ng-if="item.item.facts">
+        <div class="item item-divider">
+          Did you know?
+        </div>
+        <div class="item item-text-wrap text-left" compile="item.item.facts"></div>
       </div>
 
     </div>

@@ -51,7 +51,9 @@ angular.module('recyclepedia.controllers')
 
   $scope.goToItemDetail = function(item) {
     ApiService.selectedItem = item;
-    $location.path('app/item/');
+    $timeout(function() {
+      $location.path('app/item/');
+    }, 300);
 
     // Save this item in history
     // var history = angular.fromJson(window.localStorage['history']) || [];

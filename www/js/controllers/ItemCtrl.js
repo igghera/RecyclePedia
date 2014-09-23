@@ -3,7 +3,10 @@ angular.module('recyclepedia.controllers')
   // Save selected item in scope
   $scope.item = ApiService.selectedItem;
 
+  // Whether to show or not item desc, comments and "fun facts"
   $scope.showDescription = $scope.item.item.description.trim() != 'NO_DESCRIPTION';
+  $scope.showComments = $scope.item.comments.trim() != '';
+  $scope.showFacts = $scope.item.item.facts.trim() != '';
 
   $scope.disposeInstructions = $scope.item.correct_bin.colour === 'no_bin' ?
   'Not disposable in a bin' :

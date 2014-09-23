@@ -40,8 +40,6 @@ angular.module('recyclepedia.controllers')
     $event.stopPropagation();
     var standardConfig = $scope.standardConfigs[index];
 
-    console.log('Selecting', standardConfig.name);
-
     window.localStorage['council'] = angular.toJson(standardConfig);
 
     // Broadcast event to notify the menu that council has changed
@@ -65,12 +63,15 @@ angular.module('recyclepedia.controllers')
       } else {
         $scope.standardConfigs.push(council);
       }
-
-      // Hide loading view
-      $ionicLoading.hide();
     });
 
-    console.dir($scope.standardConfigs);
+    // Hide loading view
+    $ionicLoading.hide();
+
+    // Start tutorial
+    $timeout(function() {
+      $scope.startTutorial();
+    }, 100);
   });
 
   // Fired when user taps the CANCEL button next to the search field
@@ -117,15 +118,12 @@ angular.module('recyclepedia.controllers')
       scope: $scope,
       buttons: [{
         text: '<b>Let\'s go!</b>',
-        type: 'button-positive',
-        onTap: function(e) {
-          return;
-        }
+        type: 'button-positive'
       }]
     });
 
     $scope.welcomePopup.then(function(res) {
-     $scope.openStep1();
+      $scope.openStep1();
     });
   };
 
@@ -172,11 +170,6 @@ angular.module('recyclepedia.controllers')
     $scope.tutorialStep2.remove();
     $scope.tutorialStep3.remove();
   });
-
-  // Start tutorial after half a second
-  $timeout(function() {
-    $scope.startTutorial();
-  }, 500);
 
   if(typeof analytics !== "undefined") {
     analytics.trackView("Councils view");

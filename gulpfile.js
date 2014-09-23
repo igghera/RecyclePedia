@@ -6,6 +6,7 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var colors = require('colors');
 
 var paths = {
   sass: ['./scss/**/*.scss']
@@ -47,4 +48,27 @@ gulp.task('git-check', function(done) {
     process.exit(1);
   }
   done();
+});
+
+// Unified build task. Bump version and invoke ionic build command for all platforms
+gulp.task('build-all-platforms', function() {
+  // First, bump app version
+  sh.exec('node hooks/after_build/version_bump.js', {async: true, silent: true}, function(code, output) {
+    if(code === 0) {
+      console.log('>>> '.green, 'App version bumped to ' + output);
+    } else {
+      console.log('An error occurred: ' + output);
+    }
+    // Then build Android app
+    console.log('>>> Running "ionic build android"', '(--release???!)'.red);
+
+    sh.exec('ionic build android', {async: true, silent: true}, function(code, output) {
+      console.log('>>> '.green, 'Android build was successful (code: '+ code +')');
+      // Finally build ios app
+      console.log('>>> Running "ionic build ios"', '(--release???!)'.red);
+      sh.exec('ionic build ios', {async: true, silent: true}, function(code, output) {
+        console.log('>>> '.green, 'iOS build was successful (code: '+ code +'), enjoy!');
+      });
+    });
+  });
 });

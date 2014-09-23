@@ -6,7 +6,7 @@
 // 'RecyclePedia.controllers' is found in controllers.js
 angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recyclepedia.services'])
 
-.run(function($ionicPlatform, $location) {
+.run(function($ionicPlatform, $location, $timeout) {
   if(!angular.isUndefined(window.localStorage['council'])) {
     $location.path('/app/categories/');
   }
@@ -23,24 +23,20 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
 
     if(typeof analytics !== "undefined") {
       analytics.startTrackerWithId("UA-39582079-4");
-    } else {
-      console.log("Google Analytics Unavailable");
     }
 
     // write log to console
-    ImgCache.options.debug = true;
-
+    // ImgCache.options.debug = true;
     // increase allocated space on Chrome to 50MB, default was 10MB
-    ImgCache.options.chromeQuota = 50*1024*1024;
+    // ImgCache.options.chromeQuota = 50 * 1024 * 1024;
 
     ImgCache.init(function() {
-      console.log('ImgCache init: success!');
-
-      // from within this function you're now able to call other ImgCache methods
-      // or you can wait for the ImgCacheReady event
-    }, function(){
-        console.log('ImgCache init: error! Check the log for errors');
-    });
+        // console.log('ImgCache init: success!');
+        // from within this function you're now able to call other ImgCache methods
+        // or you can wait for the ImgCacheReady event
+      }, function(){
+          // console.log('ImgCache init: error! Check the log for errors');
+      });
   });
 })
 /*
