@@ -1,56 +1,34 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="au.com.recyclesmart.recyclepedia"
-        version="1.0.6"
-        versionCode="16"
-        xmlns="http://www.w3.org/ns/widgets"
-        xmlns:cdv="http://cordova.apache.org/ns/1.0"
-        xmlns:gap="http://phonegap.com/ns/1.0"
-        xmlns:android="http://schemas.android.com/apk/res/android">
-    <name>RecyclePedia</name>
-    <description>
-        A wiki app about recycling
-    </description>
-    <author
-      email="enquiries@recyclesmart.com.au"
-      href="http://recyclesmart.com.au">
-      RecycleSmart Pty Ltd
-    </author>
-
-    <!-- Add the INTERNET permission in Android -->
-    <feature name="NetworkStatus">
-        <param name="android-package" value="org.apache.cordova.NetworkManager" />
-    </feature>
-
-    <!-- For ImgCache to work -->
-    <feature name="http://api.phonegap.com/1.0/file"/>
-    <feature name="http://api.phonegap.com/1.0/device"/>
-    <feature name="http://api.phonegap.com/1.0/network"/>
-
-    <feature name="Device">
-        <param name="ios-package" value="CDVDevice" />
-        <param name="android-package" value="org.apache.cordova.device.Device" />
-    </feature>
-    <feature name="File">
-        <param name="ios-package" value="CDVFile" />
-        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
-    </feature>
-    <feature name="FileTransfer">
-        <param name="ios-package" value="CDVFileTransfer" />
-        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
-    </feature>
-
-    <preference name="Permissions" value="none" />
-    <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="false" />
-    <preference name="UIWebViewBounce" value="false" />
-    <preference name="DisallowOverscroll" value="true" />
-    <preference name="BackupWebStorage" value="none" />
-    <preference name="Orientation" value="portrait" />
-
-    <access origin="*" />
-
-    <gap:plugin name="com.ionic.keyboard" version="1.0.2" />
-    <gap:plugin name="org.apache.cordova.device" version="0.2.8" />
-    <gap:plugin name="org.apache.cordova.inappbrowser" version="0.2.4" />
-    <gap:plugin name="com.phonegap.plugin.statusbar" version="1.1.0" />
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="au.com.recyclesmart.recyclepedia" version="1.0.9" versionCode="19">
+  <name>RecyclePedia</name>
+  <description>A wiki app about recycling</description>
+  <author email="enquiries@recyclesmart.com.au" href="http://recyclesmart.com.au">RecycleSmart Pty Ltd</author>
+  <feature name="NetworkStatus">
+    <param name="android-package" value="org.apache.cordova.NetworkManager"/>
+  </feature>
+  <feature name="http://api.phonegap.com/1.0/file"/>
+  <feature name="http://api.phonegap.com/1.0/device"/>
+  <feature name="http://api.phonegap.com/1.0/network"/>
+  <feature name="Device">
+    <param name="ios-package" value="CDVDevice"/>
+    <param name="android-package" value="org.apache.cordova.device.Device"/>
+  </feature>
+  <feature name="File">
+    <param name="ios-package" value="CDVFile"/>
+    <param name="android-package" value="org.apache.cordova.file.FileUtils"/>
+  </feature>
+  <feature name="FileTransfer">
+    <param name="ios-package" value="CDVFileTransfer"/>
+    <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer"/>
+  </feature>
+  <feature name="Keyboard">
+      <param name="ios-package" value="IonicKeyboard" onload="true" />
+  </feature>
+  <preference name="Permissions" value="none"/>
+  <preference name="fullscreen" value="false"/>
+  <preference name="webviewbounce" value="false"/>
+  <preference name="UIWebViewBounce" value="false"/>
+  <preference name="DisallowOverscroll" value="true"/>
+  <preference name="BackupWebStorage" value="none"/>
+  <preference name="Orientation" value="portrait"/>
+  <access origin="*"/>
 </widget>

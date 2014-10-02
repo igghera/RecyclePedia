@@ -17,7 +17,6 @@ var fileContent;
 // console.log("\n- AFTER_BUILD HOOK >>> Bumping version number                                       \n".inverse);
 
 if (fs.existsSync(configFile)) {
-  // console.log('OK config file exists');
   // Read file content and store it in a variable
   fs.readFile(configFile, 'utf8', function (err, data) {
     if (err) {
@@ -26,13 +25,26 @@ if (fs.existsSync(configFile)) {
 
     fileContent = new jsxml.XML(data);
 
-    var version = fileContent.attribute('version')._text;
-    var versionCode = fileContent.attribute('versionCode')._text;
+    var versionNode = fileContent.attribute('version'),
+      version = versionNode._text,
+      versioneCodeNode = fileContent.attribute('versionCode'),
+      versionCode = parseInt(versioneCodeNode._text, 10),
+      versionArray = version.split('.'),
+      minorVersion = versionArray[versionArray.length - 1],
+      newVersion = versionCode + 1;
 
-    console.log(version);
-    // console.log(versionCode);
+    versionArray[versionArray.length - 1] = parseInt(minorVersion, 10) + 1
 
-    //attr.setValue("newValue");
+    // Update XML values
+    versionNode.setValue(versionArray.join('.'));
+    versioneCodeNode.setValue(newVersion);
+
+    var newXml = fileContent.toXMLString();
+
+    fs.writeFile(configFile, newXml, function (err) {
+      if (err) return console.log(err);
+      console.log(version);
+    });
   });
 } else {
   console.log('AFTER BUILD HOOK CANNOT FIND config.xml FILE');

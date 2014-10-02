@@ -257,7 +257,11 @@ img.logo-header {
 }
 
 .correct-bin-text {
-  line-height: 60px;
+  /*line-height: 60px;*/
+  display: flex;
+  justify-content:center;
+  align-content:center;
+  flex-direction:column; /* column | row */
   font-size: 1.2em;
 }
 

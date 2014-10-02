@@ -56,19 +56,21 @@ gulp.task('build-all-platforms', function() {
   sh.exec('node hooks/after_build/version_bump.js', {async: true, silent: true}, function(code, output) {
     if(code === 0) {
       console.log('>>> '.green, 'App version bumped to ' + output);
+      // Then build Android app
+      console.log('>>> Running "cordova build --release android"');
+
+      sh.exec('cordova build --release android', {async: true, silent: true}, function(code, output) {
+        if(code === 0) {
+          console.log('>>> '.green, 'Android build was successful (code: '+ code +')');
+          // Finally build ios app
+          console.log('>>> Running "ionic build ios"');
+          sh.exec('ionic build ios', {async: true, silent: true}, function(code, output) {
+            console.log('>>> '.green, 'iOS build was successful (code: '+ code +'), enjoy!');
+          });
+        }
+      });
     } else {
       console.log('An error occurred: ' + output);
     }
-    // Then build Android app
-    console.log('>>> Running "cordova build --release android"');
-
-    sh.exec('cordova build --release android', {async: true, silent: true}, function(code, output) {
-      console.log('>>> '.green, 'Android build was successful (code: '+ code +')');
-      // Finally build ios app
-      console.log('>>> Running "ionic build ios"');
-      sh.exec('ionic build ios', {async: true, silent: true}, function(code, output) {
-        console.log('>>> '.green, 'iOS build was successful (code: '+ code +'), enjoy!');
-      });
-    });
   });
 });
