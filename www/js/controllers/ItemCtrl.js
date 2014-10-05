@@ -18,6 +18,9 @@ angular.module('recyclepedia.controllers')
       case('green'):
         return 'Green waste';
       break;
+      case('burgundy'):
+        return 'Food waste';
+      break;
     }
   }
 
