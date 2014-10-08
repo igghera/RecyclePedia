@@ -199,7 +199,7 @@ img.logo-header {
 }
 
 .has-custom-footer {
-  bottom: 150px;
+  bottom: 190px;
 }
 
 
@@ -331,4 +331,12 @@ img.logo-header {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
+}
+
+/*No search result box*/
+
+.no-result {
+  padding: 2em;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.3em;
 }
