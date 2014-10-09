@@ -1,5 +1,12 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout, $ionicPopover, $stateParams) {
+.controller('CategoriesCtrl', function($scope,
+   ApiService,
+   $location,
+   $rootScope,
+   $ionicPopup,
+   $timeout,
+   $ionicPopover,
+   $stateParams) {
   $scope.categories = [
     {id: 1, title: 'Automotive'},
     {id: 2, title: 'Batteries'},
@@ -20,6 +27,10 @@ angular.module('recyclepedia.controllers')
     item: {
       name: ''
     }
+  };
+
+  $scope.noSearchResult = function() {
+    return $scope.items.length === 0 && $scope.isLoading === false;
   };
 
   $scope.shouldShowCategories = function() {
@@ -100,9 +111,12 @@ angular.module('recyclepedia.controllers')
 
       $scope.items = items;
 
-      if(typeof analytics !== "undefined") {
-        analytics.trackEvent('Search', 'Query', searchString);
-      }
+      // Throttle event logging by 2 seconds to avoid logging stuff like "p" then "pi" then "piz" then "pizz" then "pizza"...
+      $timeout(function() {
+        if(typeof analytics !== "undefined") {
+          analytics.trackEvent('Search', 'Query', searchString);
+        }
+      }, 2000);
     });
   };
 
