@@ -7,7 +7,16 @@
 * - a footer with 4 "standard" bins configurations
 */
 angular.module('recyclepedia.controllers')
-.controller('CouncilsCtrl', function($rootScope, $scope, ApiService, $location, $ionicLoading, $ionicPopover, $timeout, $ionicPopup) {
+.controller('CouncilsCtrl', function($rootScope,
+                                     $scope,
+                                     ApiService,
+                                     $location,
+                                     $ionicLoading,
+                                     $ionicPopover,
+                                     $timeout,
+                                     $ionicPopup,
+                                     $ionicScrollDelegate,
+                                     $filter) {
   // Our 4 standard configurations (quite hard-coded)
   $scope.standardConfigs = [];
   // Display loading indicator
@@ -20,6 +29,30 @@ angular.module('recyclepedia.controllers')
       name: ''
     }
   };
+
+  $scope.searchByString = function() {
+    $ionicScrollDelegate.scrollBy(0, 0, false);
+  };
+
+  // Show or hide standard configs?
+  $scope.shouldShowConfigs = true;
+
+  $scope.focusOnSearch = function() {
+    $scope.shouldShowConfigs = false;
+    $ionicScrollDelegate.scrollBy(0, 0);
+  };
+
+  $scope.blurOnSearch = function() {
+    $scope.shouldShowConfigs = true;
+    $ionicScrollDelegate.scrollBy(0, 0, true);
+  };
+
+  var orderBy = $filter('orderBy');
+
+  $scope.order = function(predicate, reverse) {
+    $scope.councils = orderBy($scope.councils, predicate, reverse);
+  };
+
   // List of active councils that will be filled up by API request
   $scope.councils = [];
   // When user clicks on a council in the list, we save in localStorage and proceed to categories view
@@ -64,6 +97,8 @@ angular.module('recyclepedia.controllers')
         $scope.standardConfigs.push(council);
       }
     });
+
+    $scope.order('name', false);
 
     // Hide loading view
     $ionicLoading.hide();

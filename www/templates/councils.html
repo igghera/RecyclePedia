@@ -12,22 +12,24 @@
         type="search"
         placeholder="Find your local council"
         ng-model="search.council.name"
-        ng-change="searchByString()">
+        ng-change="searchByString()"
+        ng-focus="focusOnSearch()"
+        ng-blur="blurOnSearch()">
     </label>
     <button class="button button-small button-energized" ng-if="search.council.name != ''" ng-click="clearSearchField()">
       Cancel
     </button>
   </div>
 
-  <ion-content class="has-subheader has-custom-footer">
+  <ion-content class="has-subheader" ng-class="{'has-custom-footer': shouldShowConfigs}">
     <ion-list>
-      <a class="item item-avatar" ng-repeat="council in councils | filter:search.council.name" href="" ng-click="saveCouncil(council)">
+      <a class="item item-avatar" ng-repeat="council in councils | filter:search.council.name | orderBy: orderFn " href="" ng-click="saveCouncil(council)">
         <img ng-src="{{council.logoUrl}}">
         <h2>{{council.name}}</h2>
       </a>
     </ion-list>
   </ion-content>
-  <div class="bar bar-footer bar-light standard-configs">
+  <div class="bar bar-footer bar-light standard-configs" ng-show="shouldShowConfigs">
 
     <div class="card">
       <div class="item item-divider">

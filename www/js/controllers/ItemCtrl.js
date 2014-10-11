@@ -7,19 +7,19 @@ angular.module('recyclepedia.controllers')
   var renameBins = function(originalBinName) {
     switch(originalBinName) {
       case('red'):
-        return 'General waste';
+        return 'Red lid';
       break;
       case('blue'):
-        return 'Paper and cardboard recycling';
+        return 'Blue lid';
       break;
       case('yellow'):
-        return 'Yellow recycling';
+        return 'Yellow lid';
       break;
       case('green'):
-        return 'Green waste';
+        return 'Green lid';
       break;
       case('burgundy'):
-        return 'burgundy food scrap';
+        return 'Burgundy lid';
       break;
     }
   }

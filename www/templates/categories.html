@@ -33,6 +33,14 @@
           <span>{{item.categoryList}}</span>
         </p>
       </li>
+      <li ng-show="noSearchResult()">
+        <div class="text-center no-result">
+          <strong>Sorry, we couldn't find this item.</strong>
+          <p>
+            Our team is already working to add it to RecyclePedia.
+          </p>
+        </div>
+      </li>
     </ul>
   </ion-content>
 
