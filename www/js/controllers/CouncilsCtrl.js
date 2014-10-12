@@ -30,6 +30,9 @@ angular.module('recyclepedia.controllers')
     }
   };
 
+  window.addEventListener('native.keyboardshow', keyboardShowHandler);
+  window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
   $scope.searchByString = function() {
     $ionicScrollDelegate.scrollBy(0, 0, false);
   };
@@ -42,8 +45,23 @@ angular.module('recyclepedia.controllers')
     $ionicScrollDelegate.scrollBy(0, 0);
   };
 
+  function keyboardHideHandler(e){
+    $timeout(function() {
+      $scope.shouldShowConfigs = true;
+    }, 300);
+  }
+
+  function keyboardShowHandler(e){
+    $timeout(function() {
+      $scope.shouldShowConfigs = false;
+    }, 0);
+
+  }
+
   $scope.blurOnSearch = function() {
-    $scope.shouldShowConfigs = true;
+    $timeout(function() {
+      $scope.shouldShowConfigs = true;
+    }, 300);
     $ionicScrollDelegate.scrollBy(0, 0, true);
   };
 
@@ -66,7 +84,7 @@ angular.module('recyclepedia.controllers')
       analytics.trackEvent('Council', 'Selection', council.name);
     }
 
-    $location.path('/app/categories/');
+    $scope.gotoCategoryView();
   };
   // When user clicks on a standard configuration, we save in localStorage and proceed to categories view
   $scope.saveStandardConfig = function(index, $event) {
@@ -82,8 +100,15 @@ angular.module('recyclepedia.controllers')
       analytics.trackEvent('Standard configuration', 'Selection', standardConfig.name);
     }
 
-    $location.path('/app/categories/');
+    $scope.gotoCategoryView();
   };
+
+  $scope.gotoCategoryView = function() {
+    $timeout(function() {
+      $location.path('/app/categories/');
+    }, 300);
+  };
+
   /**
   * Load list of councils from API
   */
