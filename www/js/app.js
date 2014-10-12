@@ -51,6 +51,13 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
   // from http://forum.ionicframework.com/t/image-displaying-issue-with-ng-repeat/3768/9
   $compileProvider.imgSrcSanitizationWhitelist(/^\s*(img\/|https?|file|blob|cdvfile):|data:image\//);
 
+  // Manually force keyboard to close. This is because sometimes on iOS keyboard stays open...
+  var closeKeyboard = function() {
+    if(window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.close();
+    }
+  };
+
   $stateProvider
 
     .state('app', {
@@ -60,17 +67,6 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
       controller: 'AppCtrl'
     })
 
-    // .state('app.categories', {
-    //   url: "/categories",
-    //   views: {
-    //     'menuContent' :{
-    //       templateUrl: "templates/categories.html",
-    //       controller: 'CategoriesCtrl',
-    //       reloadOnSearch: false
-    //     }
-    //   }
-    // })
-
     .state('app.categoriesQuery', {
       url: "/categories/:query",
       views: {
@@ -79,7 +75,8 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
           controller: 'CategoriesCtrl',
           reloadOnSearch: false
         }
-      }
+      },
+      onEnter: closeKeyboard
     })
 
     .state('app.category', {
@@ -89,7 +86,8 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
           templateUrl: "templates/category.html",
           controller: 'CategoryCtrl'
         }
-      }
+      },
+      onEnter: closeKeyboard
     })
 
     .state('app.item', {
@@ -99,7 +97,8 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
           templateUrl: "templates/item.html",
           controller: 'ItemCtrl'
         }
-      }
+      },
+      onEnter: closeKeyboard
     })
 
     .state('app.councils', {
@@ -109,7 +108,8 @@ angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recycleped
           templateUrl: "templates/councils.html",
           controller: 'CouncilsCtrl'
         }
-      }
+      },
+      onEnter: closeKeyboard
     });
 
   // if none of the above states are matched, use this as the fallback

@@ -1,7 +1,8 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="au.com.recyclesmart.recyclepedia" version="1.0.10" versionCode="20">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="au.com.recyclesmart.recyclepedia" version="1.0.11" versionCode="21">
   <name>RecyclePedia</name>
   <description>A wiki app about recycling</description>
   <author email="enquiries@recyclesmart.com.au" href="http://recyclesmart.com.au">RecycleSmart Pty Ltd</author>
+  <content src="index.html"/>
   <feature name="NetworkStatus">
     <param name="android-package" value="org.apache.cordova.NetworkManager"/>
   </feature>
