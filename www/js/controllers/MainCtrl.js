@@ -20,7 +20,7 @@ angular.module('recyclepedia.controllers', [])
     if($rootScope.selectedCouncil !== '') {
       $location.path('app/categories/');
     } else {
-      alert('Please select a council to start');
+      alert('Please select a council or a bin configuration to start');
     }
   };
 })
