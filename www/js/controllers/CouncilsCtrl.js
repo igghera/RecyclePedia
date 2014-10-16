@@ -125,13 +125,16 @@ angular.module('recyclepedia.controllers')
 
     $scope.order('name', false);
 
-    // Hide loading view
-    $ionicLoading.hide();
-
     // Start tutorial
     $timeout(function() {
       $scope.startTutorial();
     }, 100);
+  }).catch(function(e) {
+    // Advise the user that his connection is bad
+    alert('Your internet connectivity is poor, please try again later ');
+  }).finally(function() {
+    // Hide loading view
+    $ionicLoading.hide();
   });
 
   // Fired when user taps the CANCEL button next to the search field

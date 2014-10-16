@@ -23,7 +23,7 @@
 
         <ion-list class="list" >
           <div class="item item-avatar"
-            ng-repeat="item in items"
+            ng-repeat="item in items | filter: search.item.name"
             ng-click="goToItemDetail(item)">
             <img ng-src="http://recyclesmart.com.au/{{item.item.avatar.avatar.thumb.url}}">
             <h2>{{item.item.name}}</h2>

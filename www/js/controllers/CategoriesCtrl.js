@@ -76,6 +76,8 @@ angular.module('recyclepedia.controllers')
     $scope.search.item.name = '';
   };
 
+  var to;
+
   $scope.searchByString = function() {
     $scope.abortRequest();
 
@@ -112,7 +114,9 @@ angular.module('recyclepedia.controllers')
       $scope.items = items;
 
       // Throttle event logging by 2 seconds to avoid logging stuff like "p" then "pi" then "piz" then "pizz" then "pizza"...
-      $timeout(function() {
+      $timeout.cancel(to);
+
+      to = $timeout(function() {
         if(typeof analytics !== "undefined") {
           analytics.trackEvent('Search', 'Query', searchString);
         }
@@ -150,6 +154,10 @@ angular.module('recyclepedia.controllers')
       $scope.categories.push(c);
       i++;
     });
+  }).catch(function(e) {
+    debugger;
+    // Advise the user that his connection is bad
+    alert('Your internet connectivity is poor, please try again later');
   });
 
   // First popup that explains how categories (tiles) work

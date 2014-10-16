@@ -48,6 +48,17 @@ angular.module('recyclepedia.controllers')
     });
 
     $scope.items = items;
+  }).catch(function(e) {
+    // Advise the user that his connection is bad
+    alert('Your internet connectivity is poor, please try again later ');
+    $location.path('app/categories/');
+  }).finally(function() {
+    $timeout(function(){
+      if(showLoadingView === true) {
+        // Hide loading view
+        $ionicLoading.hide();
+      }
+    }, 300);
   });
 
   $scope.goToItemDetail = function(item) {

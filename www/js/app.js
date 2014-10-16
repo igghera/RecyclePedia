@@ -6,6 +6,20 @@
 // 'RecyclePedia.controllers' is found in controllers.js
 angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recyclepedia.services'])
 
+ // register the interceptor as a service
+.factory('myHttpInterceptor', function($q) {
+  return {
+   'responseError': function(rejection) {
+      // do something on error
+      return $q.reject(rejection);
+    }
+  };
+})
+
+.config(['$httpProvider', function($httpProvider) {
+  $httpProvider.interceptors.push('myHttpInterceptor');
+}])
+
 .run(function($ionicPlatform, $location, $timeout) {
   if(!angular.isUndefined(window.localStorage['council'])) {
     $location.path('/app/categories/');
