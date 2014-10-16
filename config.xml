@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="au.com.recyclesmart.recyclepedia" version="1.0.11" versionCode="21">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="au.com.recyclesmart.recyclepedia" version="1.0.12" versionCode="22">
   <name>RecyclePedia</name>
   <description>A wiki app about recycling</description>
   <author email="enquiries@recyclesmart.com.au" href="http://recyclesmart.com.au">RecycleSmart Pty Ltd</author>
