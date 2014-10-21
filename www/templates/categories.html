@@ -48,133 +48,17 @@
 
   <ion-content class="has-subheader categoriesContainer" ng-show="shouldShowCategories()" resizable>
 
-    <div class="row categories first-row">
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(1)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/automotive.png)"></span>
-            <div>Automotive</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(2)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/batteries.png)"></span>
-            <div>Batteries</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category last"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(3)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/chemicals.png)"></span>
-            <div>Chemicals</div>
-          </div>
-        </div>
-      </a>
-    </div>
+    <div class="row categories first-row" ng-repeat="c in categories track by $index" ng-if="$index % 3 == 0">
 
-    <div class="row categories first-row">
       <a class="col category"
+         ng-repeat="i in [$index, $index + 1, $index + 2]"
+         ng-if="categories[i] != null"
          ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(4)">
+         ng-click="gotoItemsList(i)">
         <div class="vertical-align-container">
           <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/constructions.png)"></span>
-            <div>Constructions</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(5)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/household.png)"></span>
-            <div>Household</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category last"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(6)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/electronics.png)"></span>
-            <div>Electronics</div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="row categories first-row">
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(7)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/food.png)"></span>
-            <div>Food</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(8)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/garden.png)"></span>
-            <div>Garden</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category last"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(9)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/glass.png)"></span>
-            <div>Glass</div>
-          </div>
-        </div>
-      </a>
-    </div>
-
-    <div class="row categories last-row">
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(10)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/metals.png)"></span>
-            <div>Metals</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(11)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/paper-and-cardboard.png)"></span>
-            <div>Paper and Cardboard</div>
-          </div>
-        </div>
-      </a>
-      <a class="col category last"
-         ng-style='{"height": tilesHeight}'
-         ng-click="gotoItemsList(12)">
-        <div class="vertical-align-container">
-          <div class="vertical-align-content">
-            <span class="category-icon" style="background-image: url(img/category-icons/130/plastics.png)"></span>
-            <div>Plastics</div>
+            <span class="category-icon" style="background-image: url({{categories[i].img}})"></span> <!-- img/category-icons/130/automotive.png -->
+            <div>{{categories[i].title}}</div>
           </div>
         </div>
       </a>

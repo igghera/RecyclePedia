@@ -1,28 +1,10 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope,
-   ApiService,
-   $location,
-   $rootScope,
-   $ionicPopup,
-   $timeout,
-   $ionicPopover,
-   $stateParams) {
-  $scope.categories = [
-    {id: 1, title: 'Automotive'},
-    {id: 2, title: 'Batteries'},
-    {id: 3, title: 'Chemicals'},
-    {id: 4, title: 'Constructions'},
-    {id: 5, title: 'Household'},
-    {id: 6, title: 'Electronics'},
-    {id: 7, title: 'Food'},
-    {id: 8, title: 'Garden'},
-    {id: 9, title: 'Glass'},
-    {id: 10, title: 'Metals'},
-    {id: 11, title: 'Paper and Cardboard'},
-    {id: 12, title: 'Plastics'}
-  ];
+.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout,
+$ionicPopover, $stateParams) {
 
+  $scope.categories = [];
   $scope.items = [];
+
   $scope.search = {
     item: {
       name: ''
@@ -135,7 +117,7 @@ angular.module('recyclepedia.controllers')
     * search field and hide the keyboard.
     */
 
-    var category = $scope.categories[index - 1];
+    var category = $scope.categories[index];
 
     if(!angular.element(document.activeElement).hasClass('js-searchField')) {
       if(typeof analytics !== "undefined") {
@@ -146,16 +128,14 @@ angular.module('recyclepedia.controllers')
     }
   };
 
-  ApiService.getCategories().then(function (response) {
-    var i = 0;
+  // Load categories
 
+  ApiService.getCategories().then(function (response) {
     angular.forEach(response.data.response, function(c) {
       c.img = 'img/category-icons/130/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
       $scope.categories.push(c);
-      i++;
     });
   }).catch(function(e) {
-    debugger;
     // Advise the user that his connection is bad
     alert('Your internet connectivity is poor, please try again later');
   });
@@ -166,7 +146,6 @@ angular.module('recyclepedia.controllers')
   $scope.openCategoriesPopup = function() {
     $scope.categoriesPopup = $ionicPopup.show({
       title: 'Categories view',
-      // subTitle: 'A quick tour to get you started',
       template: '<p>Search for items by material. Select one of the following categories to find out which bin your item belongs to. </p>',
       scope: $scope,
       buttons: [{
