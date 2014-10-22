@@ -211,9 +211,9 @@ angular.module('recyclepedia.controllers')
   };
 
   // Start tutorial after half a second
-  $timeout(function() {
-    $scope.startTutorial();
-  }, 500);
+  // $timeout(function() {
+  //   $scope.startTutorial();
+  // }, 500);
 
   if(typeof analytics !== "undefined") {
     analytics.trackView("Categories view");

@@ -126,9 +126,9 @@ angular.module('recyclepedia.controllers')
     $scope.order('name', false);
 
     // Start tutorial
-    $timeout(function() {
-      $scope.startTutorial();
-    }, 100);
+    // $timeout(function() {
+    //   $scope.startTutorial();
+    // }, 100);
   }).catch(function(e) {
     // Advise the user that his connection is bad
     alert('Your internet connectivity is poor, please try again later ');
