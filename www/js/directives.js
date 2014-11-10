@@ -5,11 +5,11 @@ angular.module('recyclepedia').directive('ngCache', function() {
       attrs.$observe('ngSrc', function(src) {
         ImgCache.isCached(src, function(path, success) {
           if (success) {
-            console.error('### USING CACHED FILE!!!!!');
+            // console.error('### USING CACHED FILE!!!!!');
             ImgCache.useCachedFile(el);
           } else {
             ImgCache.cacheFile(src, function() {
-              console.log('### Caching file');
+              // console.log('### Caching file');
               ImgCache.useCachedFile(el);
             });
           }

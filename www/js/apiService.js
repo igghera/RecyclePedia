@@ -26,29 +26,26 @@ angular.module('recyclepedia.services', [])
     // Here we store the currently selected item so that it's available to several controllers
     factory.selectedItem = null;
 
+    // Get categories. See getItemsForCategory for more comments
     factory.getCategories = function() {
-      // return $http.get(apiUrl + '/api/2/categories');
+      var cachedCategories = angular.fromJson(window.localStorage.categories);
+      var lastLoadedCategories = parseInt(window.localStorage.lastLoadedCategories, 10);
 
-      var mockData = {
-        data: {
-          response: [
-            {id: 1, title: 'Automotive'},
-            {id: 2, title: 'Batteries'},
-            {id: 3, title: 'Chemicals'},
-            {id: 4, title: 'Constructions'},
-            {id: 5, title: 'Household'},
-            {id: 6, title: 'Electronics'},
-            {id: 7, title: 'Food'},
-            {id: 8, title: 'Garden'},
-            {id: 9, title: 'Glass'},
-            {id: 10, title: 'Metals'},
-            {id: 11, title: 'Paper and Cardboard'},
-            {id: 12, title: 'Plastics'}
-          ]
-        }
-      };
-
-      return $q.when(mockData);
+      // If there's no category in cache, or cache is older than 7 days, we reload categories list from API
+      if(angular.isUndefined(cachedCategories) || isCacheExpired(lastLoadedCategories)) {
+        return $http.get(apiUrl + '/api/2/categories').then(function(response) {
+          window.localStorage.categories = angular.toJson(response.data.response);
+          window.localStorage.lastLoadedCategories = new Date().getTime();
+          return response;
+        });
+      } else {
+        // Otherwise we use cached copy of categories list
+        return $q.when({
+          data: {
+            response: cachedCategories
+          }
+        });
+      }
     };
 
     factory.getCouncils = function() {

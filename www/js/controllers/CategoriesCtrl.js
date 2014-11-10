@@ -1,6 +1,14 @@
 angular.module('recyclepedia.controllers')
-.controller('CategoriesCtrl', function($scope, ApiService, $location, $rootScope, $ionicPopup, $timeout,
-$ionicPopover, $stateParams) {
+.controller('CategoriesCtrl', function(
+  $scope,
+  ApiService,
+  $location,
+  $rootScope,
+  $ionicPopup,
+  $timeout,
+  $ionicPopover,
+  $stateParams,
+  $ionicLoading) {
 
   $scope.categories = [];
   $scope.items = [];
@@ -10,6 +18,20 @@ $ionicPopover, $stateParams) {
       name: ''
     }
   };
+
+  var showLoadingView = true;
+
+  // Considering 300 milliseconds as the amount of time required for view transition to complete
+  // here we basically wait for 300 mills to show the loading mask because if we show it straight away
+  // it would cause a laggy transition (because of fading animation + horizontal transition)
+  $timeout(function() {
+    if(showLoadingView === true) {
+      // Display loading indicator
+      $ionicLoading.show({
+        template: 'Loading...'
+      });
+    }
+  }, 300);
 
   $scope.noSearchResult = function() {
     return $scope.items.length === 0 && $scope.isLoading === false;
@@ -131,13 +153,52 @@ $ionicPopover, $stateParams) {
   // Load categories
 
   ApiService.getCategories().then(function (response) {
-    angular.forEach(response.data.response, function(c) {
+    // Save response
+    var cats = response.data.response;
+    // Apply the correct image to each category
+    angular.forEach(cats, function(c) {
       c.img = 'img/category-icons/130/'+ c.title.toLowerCase().split(' ').join('-') +'.png';
-      $scope.categories.push(c);
     });
+    // Very hacky horrible to differentiate office stream from household
+    if($rootScope.selectedCouncil === 'Office') {
+      $scope.categories = [
+        cats[10],
+        cats[8],
+        cats[17],
+        cats[11],
+        cats[2],
+        cats[9],
+        cats[14],
+        cats[12],
+        cats[13],
+        cats[1],
+        cats[15],
+        cats[16]
+      ];
+    } else {
+      $scope.categories = [
+        cats[0],
+        cats[1],
+        cats[2],
+        cats[3],
+        cats[4],
+        cats[5],
+        cats[6],
+        cats[7],
+        cats[8],
+        cats[9],
+        cats[10],
+        cats[11]
+      ];
+    }
   }).catch(function(e) {
     // Advise the user that his connection is bad
     alert('Your internet connectivity is poor, please try again later');
+  }).finally(function() {
+    // Don't show loading view after this
+    showLoadingView = false;
+    // If loading view is visible, hide it
+    $ionicLoading.hide();
   });
 
   // First popup that explains how categories (tiles) work
@@ -197,4 +258,4 @@ $ionicPopover, $stateParams) {
   if(typeof analytics !== "undefined") {
     analytics.trackView("Categories view");
   }
-})
+});

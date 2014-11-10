@@ -2,7 +2,13 @@
 * Controller for Category view.
 */
 angular.module('recyclepedia.controllers')
-.controller('CategoryCtrl', function($scope, $location, $stateParams, ApiService, $ionicLoading, $timeout) {
+.controller('CategoryCtrl', function(
+  $scope,
+  $location,
+  $stateParams,
+  ApiService,
+  $ionicLoading,
+  $timeout) {
   $scope.categoryName = $stateParams.categoryName;
   $scope.categoryId = $stateParams.categoryId;
   // Model for search input
@@ -16,7 +22,10 @@ angular.module('recyclepedia.controllers')
 
   var showLoadingView = true;
 
-  $timeout(function(){
+  // Considering 300 milliseconds as the amount of time required for view transition to complete
+  // here we basically wait for 300 mills to show the loading mask because if we show it straight away
+  // it would cause a laggy transition (because of fading animation + horizontal transition)
+  $timeout(function() {
     if(showLoadingView === true) {
       // Display loading indicator
       $ionicLoading.show({
@@ -26,10 +35,6 @@ angular.module('recyclepedia.controllers')
   }, 300);
 
   ApiService.getItemsForCategory($scope.categoryId).then(function (response) {
-    // Don't show loading view after this
-    showLoadingView = false;
-    // If loading view is visible, hide it
-    $ionicLoading.hide();
     var items = response.data.response;
 
     angular.forEach(items, function(item) {
@@ -53,12 +58,10 @@ angular.module('recyclepedia.controllers')
     alert('Your internet connectivity is poor, please try again later ');
     $location.path('app/categories/');
   }).finally(function() {
-    $timeout(function(){
-      if(showLoadingView === true) {
-        // Hide loading view
-        $ionicLoading.hide();
-      }
-    }, 300);
+    // Don't show loading view after this
+    showLoadingView = false;
+    // If loading view is visible, hide it
+    $ionicLoading.hide();
   });
 
   $scope.goToItemDetail = function(item) {
