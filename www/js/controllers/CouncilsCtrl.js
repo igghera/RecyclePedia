@@ -7,16 +7,22 @@
 * - a footer with 4 "standard" bins configurations
 */
 angular.module('recyclepedia.controllers')
-.controller('CouncilsCtrl', function($rootScope,
-                                     $scope,
-                                     ApiService,
-                                     $location,
-                                     $ionicLoading,
-                                     $ionicPopover,
-                                     $timeout,
-                                     $ionicPopup,
-                                     $ionicScrollDelegate,
-                                     $filter) {
+.controller('CouncilsCtrl', function(
+  $rootScope,
+  $scope,
+  ApiService,
+  $location,
+  $ionicLoading,
+  $ionicPopover,
+  $timeout,
+  $ionicPopup,
+  $ionicScrollDelegate,
+  $filter) {
+
+  // This is to force the popover elements to have an ios-like style
+  document.body.classList.remove('platform-android');
+  document.body.classList.add('platform-ios');
+
   // Our 4 standard configurations (quite hard-coded)
   $scope.standardConfigs = [];
   // Display loading indicator
