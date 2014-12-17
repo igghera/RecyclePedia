@@ -7,16 +7,17 @@
 * - a footer with 4 "standard" bins configurations
 */
 angular.module('recyclepedia.controllers')
-.controller('CouncilsCtrl', function($rootScope,
-                                     $scope,
-                                     ApiService,
-                                     $location,
-                                     $ionicLoading,
-                                     $ionicPopover,
-                                     $timeout,
-                                     $ionicPopup,
-                                     $ionicScrollDelegate,
-                                     $filter) {
+.controller('CouncilsCtrl', function(
+  $rootScope,
+  $scope,
+  ApiService,
+  HopscotchService,
+  $location,
+  $ionicLoading,
+  $timeout,
+  $ionicPopup,
+  $ionicScrollDelegate,
+  $filter) {
   // Our 4 standard configurations (quite hard-coded)
   $scope.standardConfigs = [];
   // Display loading indicator
@@ -143,33 +144,9 @@ angular.module('recyclepedia.controllers')
   };
 
   $scope.openStep1 = function() {
-    $scope.tutorialStep1.show(document.querySelector('.custom-search-icon'));
+    var tourCouncils = HopscotchService.getTourCouncils();
+    hopscotch.startTour(tourCouncils);
   };
-
-  $scope.closeStep1 = function() {
-    $scope.tutorialStep1.hide();
-    $scope.openStep2();
-  };
-
-  $scope.openStep2 = function() {
-    $scope.tutorialStep2.show(document.querySelector('.standard-configs'));
-  };
-
-  $scope.closeStep2 = function() {
-    $scope.tutorialStep2.hide();
-    $scope.openStep3();
-  };
-
-  $scope.openStep3 = function() {
-    $scope.tutorialStep3.show(document.querySelector('.ion-navicon'));
-  };
-
-  $scope.closeStep3 = function() {
-    $scope.tutorialStep3.hide();
-    window.localStorage.showTutorialCouncilView = false;
-  };
-
-  $scope.welcomePopup;
 
   $scope.openWelcomePopup = function() {
     $scope.welcomePopup = $ionicPopup.show({
@@ -183,40 +160,11 @@ angular.module('recyclepedia.controllers')
         text: '<b>Let\'s go!</b>',
         type: 'button-positive'
       }]
-    });
-
-    $scope.welcomePopup.then(function(res) {
+    })
+    .then(function(res) {
       $scope.openStep1();
     });
   };
-
-  // Load tutorial popovers
-  $ionicPopover.fromTemplateUrl('tutorial-step-1.html', {
-    scope: $scope,
-    animation: 'fade-in',
-    backdropClickToClose: false,
-    popoverPosition: 'bottom'
-  }).then(function(popover) {
-    $scope.tutorialStep1 = popover;
-  });
-
-  $ionicPopover.fromTemplateUrl('tutorial-step-2.html', {
-    scope: $scope,
-    animation: 'fade-in',
-    backdropClickToClose: false,
-    popoverPosition: 'top'
-  }).then(function(popover) {
-    $scope.tutorialStep2 = popover;
-  });
-
-  $ionicPopover.fromTemplateUrl('tutorial-step-3.html', {
-    scope: $scope,
-    animation: 'fade-in',
-    backdropClickToClose: false,
-    popoverPosition: 'bottom'
-  }).then(function(popover) {
-    $scope.tutorialStep3 = popover;
-  });
 
   // Check localstorage for the flag to see whether the user has gone through the tutorial or not
   $scope.startTutorial = function() {
@@ -226,13 +174,6 @@ angular.module('recyclepedia.controllers')
       $scope.openWelcomePopup();
     }
   };
-
-  //Cleanup the modal when we're done with it
-  $scope.$on('$destroy', function() {
-    $scope.tutorialStep1.remove();
-    $scope.tutorialStep2.remove();
-    $scope.tutorialStep3.remove();
-  });
 
   if(typeof analytics !== "undefined") {
     analytics.trackView("Councils view");

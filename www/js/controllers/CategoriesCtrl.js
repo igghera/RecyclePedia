@@ -2,11 +2,11 @@ angular.module('recyclepedia.controllers')
 .controller('CategoriesCtrl', function(
   $scope,
   ApiService,
+  HopscotchService,
   $location,
   $rootScope,
   $ionicPopup,
   $timeout,
-  $ionicPopover,
   $stateParams,
   $ionicLoading) {
 
@@ -201,9 +201,6 @@ angular.module('recyclepedia.controllers')
     $ionicLoading.hide();
   });
 
-  // First popup that explains how categories (tiles) work
-  $scope.categoriesPopup;
-
   $scope.openCategoriesPopup = function() {
     $scope.categoriesPopup = $ionicPopup.show({
       title: 'Categories view',
@@ -216,30 +213,15 @@ angular.module('recyclepedia.controllers')
           return;
         }
       }]
-    });
-
-    $scope.categoriesPopup.then(function(res) {
+    })
+    .then(function(res) {
      $scope.openStep1();
     });
   };
 
-  // Load tutorial popover
-  $ionicPopover.fromTemplateUrl('tutorial-categories-step-1.html', {
-    scope: $scope,
-    animation: 'fade-in',
-    backdropClickToClose: false,
-    popoverPosition: 'bottom'
-  }).then(function(popover) {
-    $scope.tutorialStep1 = popover;
-  });
-
   $scope.openStep1 = function() {
-    $scope.tutorialStep1.show(document.querySelector('.custom-search-icon'));
-  };
-
-  $scope.closeStep1 = function() {
-    $scope.tutorialStep1.hide();
-    window.localStorage.showTutorialCategoriesView = false;
+    var tourCategories = HopscotchService.getTourCategories();
+    hopscotch.startTour(tourCategories);
   };
 
   $scope.startTutorial = function() {
