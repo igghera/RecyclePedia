@@ -10,6 +10,10 @@ angular.module('recyclepedia.controllers')
   $stateParams,
   $ionicLoading) {
 
+  // This is to force the popover elements to have an ios-like style
+  document.body.classList.remove('platform-android');
+  document.body.classList.add('platform-ios');
+
   $scope.categories = [];
   $scope.items = [];
 
