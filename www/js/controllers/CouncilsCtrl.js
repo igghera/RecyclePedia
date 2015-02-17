@@ -88,17 +88,15 @@ angular.module('recyclepedia.controllers')
     $scope.gotoCategoryView();
   };
   // When user clicks on a standard configuration, we save in localStorage and proceed to categories view
-  $scope.saveStandardConfig = function(index, $event) {
+  $scope.saveStandardConfig = function(config, $event) {
     $event.stopPropagation();
-    var standardConfig = $scope.standardConfigs[index];
-
-    window.localStorage['council'] = angular.toJson(standardConfig);
+    window.localStorage['council'] = angular.toJson(config);
 
     // Broadcast event to notify the menu that council has changed
-    $rootScope.$broadcast('council-changed', standardConfig.name);
+    $rootScope.$broadcast('council-changed', config.name);
 
     if(typeof analytics !== "undefined") {
-      analytics.trackEvent('Standard configuration', 'Selection', standardConfig.name);
+      analytics.trackEvent('Standard configuration', 'Selection', config.name);
     }
 
     $scope.gotoCategoryView();
@@ -123,6 +121,20 @@ angular.module('recyclepedia.controllers')
         $scope.standardConfigs.push(council);
       }
     });
+
+    // Divide standard configs in 2 sub-collections so we can split them into 2 rows with ng-repeat (grosse)
+    var configsRow1 = [],
+      configsRow2 = [];
+
+    for(var i = 0; i < $scope.standardConfigs.length; i++) {
+      if(i < 2) {
+        configsRow1.push($scope.standardConfigs[i]);
+      } else {
+        configsRow2.push($scope.standardConfigs[i]);
+      }
+    }
+
+    $scope.standardConfigs = [configsRow1, configsRow2];
 
     $scope.order('name', false);
 

@@ -1,10 +1,10 @@
 // Ionic RecyclePedia App
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'RecyclePedia' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'RecyclePedia.controllers' is found in controllers.js
-angular.module('recyclepedia', ['ionic', 'recyclepedia.controllers', 'recyclepedia.services'])
+angular.module('recyclepedia', [
+  'ionic', 
+  'recyclepedia.controllers', 
+  'recyclepedia.services'
+])
 
  // register the interceptor as a service
 .factory('myHttpInterceptor', function($q) {
